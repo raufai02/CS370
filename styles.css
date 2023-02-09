@@ -1,0 +1,33 @@
+body{
+    background-color: palegoldenrod;
+    font-family: courier, serif;
+    
+}
+.class-for-index {
+    color: darkblue;
+}
+nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin:0;
+    padding:0;
+    border-bottom: 2px solid black;
+    background-color: blanchedalmond;
+    
+}
+
+
+.tab:hover {
+    opacity: 0.8;
+    background-color: #555;
+    color: white;
+    
+}
