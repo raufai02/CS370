@@ -1,0 +1,43 @@
+[data-tab-content] {
+    display: none;
+}
+
+.active[data-tab-content] {
+    display: block;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid blue;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 1px;
+}
+
+.tab.active {
+    background-color: #ccc;
+}
+
+.tab:hover {
+    background-color: #b32c2c;
+}
+
+.tab-content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.login {
+    margin: 50px;
+}
