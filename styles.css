@@ -1,13 +1,8 @@
 body{
-    background-color: palegoldenrod;
-    font-family: Gabriola;
-    }
-a{color: white;text-decoration: none;}
-h2{font-size: 4.5vh;}
-h2{font-size: 4vh;}
-p{font-size: 3.5vh;}
-
-.class-for-index {color: darkblue;}
+    background-color: whitesmoke;
+    font-family: courier, serif;
+    
+}
 nav {
     list-style-type: none;
     margin: 0;
@@ -15,7 +10,6 @@ nav {
     overflow: hidden;
     background-color: #333;
   }
-
 .tabs {
     display: flex;
     justify-content: space-around;
@@ -23,9 +17,10 @@ nav {
     margin:0;
     padding:0;
     border-bottom: 2px solid black;
-    background-color: #A2B8A0;;
+    background-color: lightgray;
     
 }
+
 
 .tab:hover {
     opacity: 0.8;
