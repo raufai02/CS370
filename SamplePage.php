@@ -29,7 +29,7 @@
   <table border="0">
     <tr>
       <td>NAME</td>
-      <td>PHONE NUMBER</td>
+      <td>ADDRESS</td>
     </tr>
     <tr>
       <td>
@@ -54,7 +54,6 @@
   </tr>
 
 <?php
-
 
 $result = mysqli_query($connection, "SELECT * FROM EMPLOYEES");
 
@@ -83,9 +82,7 @@ while($query_data = mysqli_fetch_row($result)) {
 
 <?php
 
-
-echo DB_USERNAME
-// Add an employee to the table. //
+/* Add an employee to the table. */
 function AddEmployee($connection, $name, $address) {
    $n = mysqli_real_escape_string($connection, $name);
    $a = mysqli_real_escape_string($connection, $address);
@@ -109,9 +106,7 @@ function VerifyEmployeesTable($connection, $dbName) {
   }
 }
 
-
-
-// Check for the existence of a table. 
+/* Check for the existence of a table. */
 function TableExists($tableName, $connection, $dbName) {
   $t = mysqli_real_escape_string($connection, $tableName);
   $d = mysqli_real_escape_string($connection, $dbName);
