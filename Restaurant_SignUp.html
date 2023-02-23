@@ -13,78 +13,85 @@
 </head>
 
 <body> 
-<section id="section3" class="container-fluid"> <!-- CONTACT FORM -->
+    <header>
+        <nav class="tabs">
+            <h2><a class="tab" href="index.html">Home</a></h2>
+            <h2><a class="tab" href="about.html">About Us</a></h2>
+            <h2><a class="tab" href="signin.html">Sign In</a></h2>
+       </nav>
+    </header>
+    <section id="section3" class="container-fluid"> <!-- CONTACT FORM -->
 
-  <form id="RSignUpForm" class = "needs-validation" novalidate>
-    <div class="row">
+    <form id="RSignUpForm" class = "needs-validation" novalidate>
+        <div class="row">
 
-      <div class="col-md-3"> <!-- LEFT COLUMN -->
-        <div class="contact-info">
-          <img id="RestaurantPicture" src="MS_images/Restaurant.jpg" alt="Foto Personal"/>
-          <h1>RESTAURANT SIGN-UP</h1>
-          <h2>Thank you for donating food!</h2>
-          <div id="googlemap"></div>
-        </div>
-      </div>
-
-      <div class="col-md-9"> <!-- RIGHT COLUMN -->
-        <div class="contact-form">
-
-          <div class="form-group"> <!-- RESTAURANT NAME -->
-            <label class="form-label col-sm-4" for="fname">Restaurant Name (User Name)*:</label>
-            <input type="text" class="form-control" id="fname" placeholder="Nombre">
-            <p>Incorrect</p>
-          </div>
-
-          <div class="form-group"> <!-- RESTAURANT PASSWORD -->
-            <label class="form-label col-sm-2" for="pass">Password*:</label>
-            <input type="text" class="form-control" id="pass" placeholder="Password">
-            <p>Incorrect</p>
-          </div>
-
-          <div class="form-group"> <!-- EMAIL ADDRESS -->
-            <label class="form-label col-sm-2" for="email">Email *:</label>
-            <input type="email" class="form-control" id="email" placeholder="Email">
-            <p>Incorrect</p>
-          </div>
-
-          <div class="form-group"> <!-- PHONE NUMBER -->
-            <label class="form-label col-sm-2" for="phone">Phone Number *:</label>
-            <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
-            <p>Incorrect</p>
-          </div>
-
-          <div class="form-group"> <!-- ADDRESS -->
-            <label class="form-label col-sm-2" for="address">Address *:</label>
-            <input type="text" class="form-control" id="address" placeholder="Address">
-            <p>Incorrect</p>
-          </div>
-
-          <div class="form-group"> <!-- LICENSE -->
-            <label class="form-label col-sm-2" for="license">License Number *:</label>
-            <input type="text" class="form-control" id="license" placeholder="License">
-            <p>Incorrect</p>
-          </div>
-
-          <div class="form-group"> <!-- COMMENTS -->
-            <label class="form-label col-sm-2" for="comment">Comments:</label>
-            <textarea class="form-control" rows="5" id="comment"></textarea>
-          </div>
-
-          <div class="form-group form-check"> <!-- CHECKBOX -->
-            <input type="checkbox" class="form-check-input" id="TeryC">
-            <label class="form-check-label" for="TeryC">Acept Terms and Conditions *.</label>
-            <p>Please accept.</p>
-          </div>
-
-          <div class="form-group"> <!-- SEND -->
-            <div class="col-sm-offset-2 col-sm-10">
-            <button id="submit" type="submit" class="btn btn-default">Send</button>
+        <div class="col-md-3"> <!-- LEFT COLUMN -->
+            <div class="contact-info">
+            <img id="RestaurantPicture" src="MS_images/Restaurant.jpg" alt="Foto Personal"/>
+            <h1>RESTAURANT SIGN-UP</h1>
+            <h2>Thank you for donating food!</h2>
+            <div id="googlemap"></div>
             </div>
-          </div>
-
         </div>
-     </div>
-  </form>
-</section>
+
+        <div class="col-md-9"> <!-- RIGHT COLUMN -->
+            <div class="contact-form">
+
+            <div class="form-group"> <!-- RESTAURANT NAME -->
+                <label class="form-label col-sm-4" for="fname">Restaurant Name (Username)*:</label>
+                <input type="text" class="form-control" id="fname" placeholder="Nombre">
+                <p>Incorrect</p>
+            </div>
+
+            <div class="form-group"> <!-- RESTAURANT PASSWORD -->
+                <label class="form-label col-sm-2" for="pass">Password*:</label>
+                <input type="text" class="form-control" id="pass" placeholder="Password">
+                <p>Incorrect</p>
+            </div>
+
+            <div class="form-group"> <!-- EMAIL ADDRESS -->
+                <label class="form-label col-sm-2" for="email">Email *:</label>
+                <input type="email" class="form-control" id="email" placeholder="Email">
+                <p>Incorrect</p>
+            </div>
+
+            <div class="form-group"> <!-- PHONE NUMBER -->
+                <label class="form-label col-sm-2" for="phone">Phone Number *:</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                <p>Incorrect</p>
+            </div>
+
+            <div class="form-group"> <!-- ADDRESS -->
+                <label class="form-label col-sm-2" for="address">Address *:</label>
+                <input type="text" class="form-control" id="address" placeholder="Address">
+                <p>Incorrect</p>
+            </div>
+
+            <div class="form-group"> <!-- LICENSE -->
+                <label class="form-label col-sm-2" for="license">License Number *:</label>
+                <input type="text" class="form-control" id="license" placeholder="License">
+                <p>Incorrect</p>
+            </div>
+
+            <div class="form-group"> <!-- COMMENTS -->
+                <label class="form-label col-sm-2" for="comment">Comments:</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+            </div>
+
+            <div class="form-group form-check"> <!-- CHECKBOX -->
+                <input type="checkbox" class="form-check-input" id="TeryC">
+                <label class="form-check-label" for="TeryC">Accept Terms and Conditions *.</label>
+                <p>Please accept.</p>
+            </div>
+
+            <div class="form-group"> <!-- SEND -->
+                <div class="col-sm-offset-2 col-sm-10">
+                <button id="submit" type="submit" class="btn btn-default">Send</button>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </form>
+    </section>
 </body>
