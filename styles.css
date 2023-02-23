@@ -1,108 +1,147 @@
-body{
-    background-color: whitesmoke;
-    font-family: courier, serif;
-    
-}
-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: whitesmoke;
-  }
-.tabs {
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-    margin:0;
-    padding:0;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
-    background-color: whitesmoke;
-}
-.tab{
-    color:black;
-    text-decoration:none;
+*{font-family: Gabriola; box-sizing: border-box;}
+body{color: black; background-color: whitesmoke; padding: 5%;}
+a{color: white;text-decoration: none;}
+.section-header{font-size: 5vh; text-align: center; background-color: #A2B8A0; padding: 1%; width: 100%}
+h2{font-size: 5vh;}
+p{font-size: 3.5vh;}
+
+#section0, #section2, #section3,  #section4{
+
+  position: relative;
+  margin-top: 10%;
 }
 
 
+/* -------------------------------------------------- NAVBAR ------------------------------------------------------- */
 
+.navbar{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  background-color: whitesmoke;
+}
 
+.navbar ul a{
+  font-size: 4.5vh;
+  justify-content: center;
+}
 
-a:hover {
-    opacity: 0.8;
-    background-color: grey;
+.navbar-brand{
+  font-size: 5.5vh;
+  font-weight:600;
+}
+
+.nav-link.disabled{
+  pointer-events: none;
 }
 
 
+/* ---------------------------------------------------- HOME PAGE ---------------------------------------------- */
+
+#section0 .row{
+  padding: 10%;
+}
+
+#section0 .col{
+  text-align: center;
+  background-color: #A2B8A0;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  color: white;
+}
+
+/* ---------------------------------------------------- ABOUT US PAGE ---------------------------------------------- */
+#aboutuspic{
+  height: 300px;
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ----------------------------------- SIGNUP PAGE ---------------------------------------------- */
+
+#section2 .row{
+  height: 30%;
+}
+
+#section2 .row.donor{
+
+  padding-top: 1%;
+}
+
+#section2 .col{
+  padding: 2%;
+  text-align: center;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+#section2 .row.donor .col{
+  background-color: #AADFDB;
+}
+
+#section2 .row.volunteer .col{
+  background-color: #587F97;
+}
+
+
+#section2 a{
+  text-decoration: none;
+}
 
 
 /* ----------------------------------- VOLUNTEER/RESTAURANT SIGN UP FORM ---------------------------------------------- */
 
 form h1{text-align: center;}
 
-.col-md-3{
-        background: #A2B8A0;
-        padding: 4%;
-        border-top-left-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;}
+#section3 .col-md-3{
+  background: #A2B8A0;
+  padding: 4%;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;}
 
-.contact-info{
-  margin-top:10%;
+#section3 .contact-info{
+  text-align: center;
 }
 
-.contact-info img{
-  margin-bottom: 15%; 
-    align-self: center
+#section3 img{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20%;
 }
 
-.contact-info h2{
-  margin-bottom: 10%;
-    text-align: center;
-}
 
-#googlemap{
-  height: 30vh;
-    align-self: center;}
-
-.fb-page {
-  height: 30vh;
-  width: auto;
-  align-self: center;
-}
-
-.col-md-9{
+#section3 .col-md-9{
   padding: 3%;
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 
-.contact-form label{
+#section3 .contact-form label{
   font-weight:600;
 }
-.contact-form button{
+#section3 .contact-form button{
   background: #284026;
-    color: #fff;
-    font-weight: 600;
-    width: 25%;
+  color: #fff;
+  font-weight: 600;
+  width: 25%;
 }
-.contact-form button:focus{
+#section3 .contact-form button:focus{
   box-shadow:none;
 }
-#VolunteerPicture, #RestaurantPicture {
-  height: 30vh;
-    display: block; 
-    margin-left: auto; 
-    margin-right: auto;}
 
-.form-group p{opacity: 0;}
-.form-control ~ p{opacity:0;}
-.form-group .invalid ~ p{
+#section3 .form-group p{opacity: 0;}
+#section3 .form-control ~ p{opacity:0;}
+#section3 .form-group .invalid ~ p{
   opacity: 1; color: 
   red; font-size: 3vh;
 }
-.form-check .invalid ~ p{
+#section3 .form-check .invalid ~ p{
   opacity: 1;
   color: red;
   font-size: 3vh;
 }
+
