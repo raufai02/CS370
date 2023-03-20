@@ -4,18 +4,18 @@ body {
 
 .App {
   text-align: center;
-  max-width: 728px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .App header {
-  background-color: #181717;
+  background-color: #6fd49c;
   height: 10vh;
   min-height: 50px;
   color: white;
   position: fixed;
   width: 100%;
-  max-width: 728px;
+  max-width: 900px;
   top: 0;
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@ form {
   bottom: 0;
   background-color: rgb(24, 23, 23);
   width: 100%;
-  max-width: 728px;
+  max-width: 900px;
   display: flex;
   font-size: 1.5rem;
 }
@@ -108,31 +108,24 @@ button:disabled {
 }
 
 
-
-
-ul, li {
-  text-align: left;
-  list-style: none;
-}
-
-p {
+p { 
   max-width: 500px;
   margin-bottom: 12px;
   line-height: 24px;
-  padding: 10px 20px;
-  border-radius: 25px;
+  /*padding: 10px 20px; */
+  border-radius: 25px; 
   position: relative;
   color: white;
-  text-align: center;
+  text-align: left;
 }
 
-.message {
+/* .message {
   display: flex;
   align-items: center;
-}
+} */
 
 
-.sent {
+/* .sent {
   flex-direction: row-reverse;
 }
 
@@ -140,7 +133,7 @@ p {
   color: white;
   background: #0b93f6;
   align-self: flex-end;
-}
+} */
 .received p {
   background: #e5e5ea;
   color: black;
@@ -151,4 +144,54 @@ img {
   height: 40px;
   border-radius: 50%;
   margin: 2px 5px;
+}
+
+.task.completed {
+  background-color: gray;
+}
+
+.task.available {
+  text-align: left;
+  list-style: none;
+  line-height: 24px;
+  color: white;
+  background: green;
+
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.modal {
+  text-align: center;
+  font-size: larger;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.task.in-progress {
+  text-align: left;
+  list-style: none;
+  line-height: 24px;
+  color: white;
+  background: rgb(161, 161, 63);
+}
+
+.task.in-progress p {
+  text-align: center;
+}
+
+.task.available p {
+  text-align: center;
 }
