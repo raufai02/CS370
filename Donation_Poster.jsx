@@ -1,6 +1,7 @@
 import Donor_Header from '../Donor/Donor_Header.jsx';
 import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
 import './Donation_Poster.css';
 
 
@@ -48,7 +49,7 @@ export default function Donation_Poster(){
           title: formValue.title,
           quantity: formValue.quantity,
           description: formValue.description,
-          availability: formValue.availability
+          availability: formValue.availability,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           status:'available' // default status!
         })
@@ -66,7 +67,7 @@ export default function Donation_Poster(){
                     <form id="donationposter" onSubmit={sendTask}> {/*changed the onsubmit to send task and added onChange = setFormValue to each form*/ }
                         <label htmlFor="title"><b>Donation Title:</b></label>
                       
-                        <input id="sititle" type="text" onChange={(e) => setFormValue({ ...formValue, title: e.target.value })} placeholder="Enter a title for you donation." name="title" required />
+                        <input id="sititle" type="text" onChange={(e) => setFormValue({ ...formValue, title: e.target.value })} placeholder="Enter title for you donation." name="title" required />
                         <label htmlFor="quantity"><b>Quantity:</b></label>
                         <input id="siquantity" type="text" onChange={(e) => setFormValue({ ...formValue, quantity: e.target.value })} placeholder="How many servings of food are you donating (roughly)?" name="quantity" required />
                         <label htmlFor="description"><b>Description of Donation:</b></label>
