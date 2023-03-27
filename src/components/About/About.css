@@ -1,9 +1,10 @@
 #aboutuspic{
-    height: 300px;
-    width: 500px;
+    height: fit-content;
+    width: fit-content; 
     display: block;
     margin-left: auto;
     margin-right: auto;
+    
   }
   
 .col.food-waste{
