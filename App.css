@@ -1,0 +1,100 @@
+
+
+/* Test */
+
+*{font-family: Constantia; box-sizing: border-box;}
+body{
+  color: black; background-color: whitesmoke; padding: 0;} /*THE PADDING OMG */
+a{color: white;text-decoration: none;}
+.section-header{font-size: 5vh; text-align: center; background-color: #A2B8A0; padding: 1%; width: 100%;}
+h2{font-size: 5vh;}
+p{font-size: 3.5vh;}
+
+#section0, #section2, #section3,  #section4{
+
+  position: relative;
+  margin-top: 7%;
+}
+
+
+
+
+/* ---------------------------------------------------- HOME PAGE ---------------------------------------------- */
+
+/* ---------------------------------------------------- ABOUT US PAGE ---------------------------------------------- */
+
+/* ----------------------------------- SIGNUP PAGE ---------------------------------------------- */
+
+
+
+/* ----------------------------------- VOLUNTEER/RESTAURANT SIGN UP FORM* ---------------------------------------------- */
+
+
+#section3 .col-md-3{
+  background: #A2B8A0;
+  padding: 4%;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+#section3 .contact-info h1{
+  font-size: 4.5vh;
+  text-align: center;
+}
+
+
+#section3 .contact-info h2{
+  font-size: 3vh;
+  text-align: center;
+}
+
+#section3 img{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20%;
+}
+
+
+#section3 .col-md-9{
+  padding: 3%;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+#section3 .contact-form label{
+  font-weight:600;
+}
+#section3 .contact-form button{
+  background: #284026;
+  color: #fff;
+  font-weight: 600;
+  width: 25%;
+}
+#section3 .contact-form button:focus{
+  box-shadow:none;
+}
+
+#section3 .form-group p{opacity: 0;}
+#section3 .form-control ~ p{opacity:0;}
+#section3 .form-group .invalid ~ p{
+  opacity: 1; color: 
+  red; font-size: 3vh;
+}
+#section3 .form-check .invalid ~ p{
+  opacity: 1;
+  color: red;
+  font-size: 3vh;
+}
+
+
+/* ----------------------------------- VOLUNTEER PAGE ---------------------------------------------- */
+
+.map-container-2{
+  height: 70vh;
+}
+
+.map-container-2 iframe{
+
+  width: 100%;
+  height: 100%;
+}
