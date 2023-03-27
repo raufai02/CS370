@@ -2,8 +2,9 @@ import Header from '../Header/Header.jsx';
 import './Sign_In.css';
 import {Link} from "react-router-dom";
 import volunteer from './volunteer.png';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { auth } from "../../firebase";
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {db} from "../../firebase";
 import {doc, setDoc, getDoc} from "firebase/firestore";
@@ -24,6 +25,36 @@ export default function Sign_In(){
         .catch((error) => {
             console.log(error);
         });
+    }
+
+    const [authUser, setAuthUser] = useState(null);
+    const [role, setRole] = useState('');
+
+    //use the role variable to navigate to correct user page
+
+    useEffect(() =>{
+        const listen = onAuthStateChanged(auth, (user) =>{
+            if(user) {
+                userRole(user).then((rl) =>{
+                    setRole(rl)
+                    setAuthUser(user)
+                });
+            }else {
+                setAuthUser(null);
+                setRole(null);
+            }
+        });
+
+        return () =>{
+            listen();
+        }
+    }, []);
+
+    async function userRole(authUser){
+        const docRef = doc(db, "users", authUser.uid);
+        const docSnap = await getDoc(docRef);
+        return String(docSnap.data().role);
+
     }
 
     // This function "handleSubmit" allows us to submit data and link to a new page
