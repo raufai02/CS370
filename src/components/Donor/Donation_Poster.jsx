@@ -1,5 +1,5 @@
 import Donor_Header from '../Donor/Donor_Header.jsx';
-import {Link} from "react-router-dom";
+// import {Link} from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import React, { useRef, useState } from 'react';
 import './Donation_Poster.css';
@@ -10,8 +10,8 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+// import { useAuthState } from 'react-firebase-hooks/auth';
+// import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
 firebase.initializeApp({
@@ -25,7 +25,7 @@ firebase.initializeApp({
     measurementId: "G-E1M9GX8M3E"
   })
   
-  const auth = firebase.auth();
+  // const auth = firebase.auth();
   const firestore = firebase.firestore();
   const analytics = firebase.analytics();
 
