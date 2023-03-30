@@ -27,3 +27,21 @@ function Header(props){
     )
 }
 export default Header;
+
+
+
+
+
+/* <ul className="navbar">
+            <li>MealSwipes</li>
+            <li>
+                <Link to='/'>Home</Link>
+            </li>
+            <li>
+                <Link to='/about'>About</Link>
+            </li>
+            <li>
+                <Link to='/signin'>Sign In</Link>
+            </li>
+        </ul>
+        */

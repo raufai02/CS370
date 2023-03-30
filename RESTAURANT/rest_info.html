@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MS - Restaurant</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="restaurant.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <!-- JS  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>  
+  <!-- JQUERY -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- EXTERNAL  -->
+  <script type="text/javascript" src="../JavaScript.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="../index.html">MEALSWIPES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <!-- Hamburguer Menu -->
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="restaurant.html">Home Page</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="rest_info.html">Profile Information</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="donor_history.html">Donor History</a>
+              </li>
+            </ul>
+          </div>
+    </div>
+</nav>
+
+<section class="vh-100 profile-info">
+  <div class="container py-5 h-100">
+    <div class="row backarrow"><a href="restaurant.html"><i class="bi bi-arrow-left"></i></a></div>
+
+    <div class="row d-flex justify-content-center align-items-center h-100 mt-0">
+      <div class="col col-lg-6 mb-4 mb-lg-0">
+        <div class="card mb-3 profile-card">
+          <div class="row g-0">
+            <div class="col-md-4 gradient-custom text-center text-white profile-pic">
+              <img src="../MS_images/contact_image.png"class="img-fluid my-5"/>
+              <p>CHIPOTLE</p>
+              <p>1401 Oxford Rd NA <br> Atlanta</p>
+              <button type="button" class="btn btn-outline-dark">Edit Profile</button>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body p-4">
+                <h6>Contact Information</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3 email">
+                    <h6>Email</h6>
+                    <p>info@example.com</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Phone Number</h6>
+                    <p class="text-muted">123 456 789</p>
+                  </div>
+                </div>
+                <h6>Past Donations</h6>
+                <hr class="mt-0 mb-4">
+                <div class="row pt-1">
+                  <div class="col-6 mb-3">
+                    <h6>Meals Delivered</h6>
+                    <p class="text-muted">34</p>
+                  </div>
+                  <div class="col-6 mb-3">
+                    <h6>Average ratings</h6>
+                    <p class="text-muted">4/5</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- JS  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>  
+    <!-- EXTERNAL  -->
+    <script type="text/javascript" src="JavaScript.js"></script>
+    <title>Sign In</title>
+
+    <style>
+        form #signin {border: 3px solid whitesmoke;}
+
+        .here, .forgotpass{color: blue;}
+        .here:hover, .forgotpass: hover{color: #284026}
+
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+
+        button {
+          background: #284026;
+          color: #fff;
+          font-weight: 600;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+        }
+
+        button:hover {
+          opacity: 0.8;
+        }
+
+        .imgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+        }
+
+        img.avatar {
+         /width: 40%;
+          border-radius: 50%;
+        }
+
+        .signin_container {
+          padding: 16px;
+        }
+
+        span.psw {
+          float: right;
+          padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+          }
+    </style>
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">MEALSWIPES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <!-- Hamburguer Menu -->
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link active" href="signin.html">Sign In</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+<section id = "section2">
+    <div class = "col section-header my-2 mx-0">LOG IN FORM</div>
+    <div class="imgcontainer">
+        <img src="MS_images/volunteer.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="signin_container">
+        <form id = "signin" action="donorTimeline.html">
+            <label for="uname"><b>Username</b></label>
+            <input id = "siusername"type="text" placeholder="Enter Username" name="uname" required>
+            <label for="psw"><b>Password</b></label>
+            <input id = "sipass" type="password" placeholder="Enter Password" name="psw" required>
+            <button type="submit">Login</button>
+        </form>
+        <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+    <div class="container">
+        <span class="psw">FORGOT <a class="forgotpass" href="#">PASSWORD?</a></span>
+        <p>NOT A MEMBER? SIGN UP <a class="here" href="signup.html">HERE</a>
+        </p>
+    </div>
+</section>
+
+    
+</body>
+</html>

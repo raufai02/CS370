@@ -3,9 +3,6 @@ import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-
 const firebaseConfig = {
     apiKey: "AIzaSyDPrvNRiqlpUh4Tlqh3lrBTZOqwmvTg6QI",
     authDomain: "mealswipes-f0902.firebaseapp.com",
@@ -15,6 +12,9 @@ const firebaseConfig = {
     appId: "1:1016636753973:web:cf9bc5028c130674a6097c",
     measurementId: "G-E1M9GX8M3E"
 };
+
+
+
 
 
 //Initialize Firebase
@@ -27,4 +27,3 @@ export const auth = getAuth(app);
 //Initialize db
 
 export const db = getFirestore(app);
-
