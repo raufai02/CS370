@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6d5a155a.css",
+    "main.js": "/static/js/main.46c6b166.js",
+    "static/js/787.065f3c6c.chunk.js": "/static/js/787.065f3c6c.chunk.js",
+    "static/media/volunteer-2.png": "/static/media/volunteer-2.232b863b8f8aecbe953a.png",
+    "static/media/Food_Waste_US_Chart.png": "/static/media/Food_Waste_US_Chart.43c385078c955abfd110.png",
+    "static/media/volunteer.jpg": "/static/media/volunteer.68cdb6e8dbe408728963.jpg",
+    "index.html": "/index.html",
+    "main.6d5a155a.css.map": "/static/css/main.6d5a155a.css.map",
+    "main.46c6b166.js.map": "/static/js/main.46c6b166.js.map",
+    "787.065f3c6c.chunk.js.map": "/static/js/787.065f3c6c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6d5a155a.css",
+    "static/js/main.46c6b166.js"
+  ]
+}
