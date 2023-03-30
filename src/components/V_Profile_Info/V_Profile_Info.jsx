@@ -1,9 +1,32 @@
 import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
 import './V_Profile_Info.css';
 import {FilePerson} from 'react-bootstrap-icons';
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../../firebase";
+
+import React, { useEffect, useState } from 'react';
+import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
 export default function V_Profile_Info(){
+    const user = auth.currentUser;
+    const [authUser, setAuthUser] = useState(null);
+    const [role, setRole] = useState('');
+    const [phoneNum, setPhoneNum] = useState('');
+    const [name, setName] = useState('');
+
+    async function userInfo(authUser){
+        const docRef = doc(db, "users", authUser.uid);
+        const docSnap = await getDoc(docRef);
+        setRole(String(docSnap.data().role));
+        setPhoneNum(String(docSnap.data().phoneNum));
+        setName(String(docSnap.data().name));
+    }
+
+    useEffect(() => {
+        userInfo(user);
+    })
+
     return(
         <body>
             <VHeader num={5}/>
@@ -16,8 +39,8 @@ export default function V_Profile_Info(){
                                 <div className="row g-0">
                                     <div className="col-md-4 gradient-custom text-center text-white profile-pic">
                                         <img src="../MS_images/contact_image.png" className="img-fluid my-5" />
-                                        <p>Marie Horwitz</p>
-                                        <p>Volunter 1</p>
+                                        <p>{name}</p>
+                                        <p>{role}</p>
                                         <button type="button" className="btn btn-outline-dark">Edit Profile</button>
                                     </div>
                                     <div className="col-md-8">
@@ -27,7 +50,7 @@ export default function V_Profile_Info(){
                                             <div className="row pt-1">
                                                 <div className="col-6 mb-3 email">
                                                     <h6>Email</h6>
-                                                    <p>info@example.com</p>
+                                                    <p>{user.email}</p>
                                                 </div>
                                                 <div className="col-6 mb-3">
                                                     <h6>Phone Number</h6>
