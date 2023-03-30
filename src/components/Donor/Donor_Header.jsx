@@ -1,7 +1,7 @@
-import './Header.css';
+import './Donor_Header.css';
 import {Link} from "react-router-dom";
 
-function Header(props){
+function Donor_Header(props){
     return(
         <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <div className="container-fluid">
@@ -12,13 +12,16 @@ function Header(props){
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link to='/'>Home</Link>
+                            <Link to='/donorui'>Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/about'>About</Link>
+                            <Link to='/signin'>Profile</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/signin'>Sign In</Link>
+                            <Link to='/signin'>History</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to='/signin'>Write a Review</Link>
                         </li>
                     </ul>
                 </div>
@@ -26,4 +29,4 @@ function Header(props){
         </nav>
     )
 }
-export default Header;
+export default Donor_Header;

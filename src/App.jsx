@@ -3,6 +3,8 @@ import Home from './components/Home/Home.jsx'
 import About from './components/About/About.jsx';
 import Sign_In from './components/Sign_In/Sign_In.jsx';
 import Donation_Poster from "./components/Donor/Donation_Poster.jsx";
+import Donor_UI from './components/Donor_UI/Donor_UI.jsx';
+import Volunteer_UI from "./components/Volunteer_UI/Volunteer_UI.jsx";
 //import Volunteer_Sign_Up from './components/Volunteer_Sign_Up/Volunteer_Sign_Up.jsx';
 import React from "react";
 import './App.css';
@@ -20,6 +22,8 @@ function App() {
         <Route path='/signin' element={<Sign_In/>}  />
         <Route path='/donortimeline' element={<Donor_Timeline/>}  />
         <Route path='/donationposter' element={<Donation_Poster/>}  />
+        <Route path='/donorui' element={<Donor_UI/>} />
+        <Route path='/volunteerui' element={<Volunteer_UI/>} />
       </Routes>
     </BrowserRouter> 
   )

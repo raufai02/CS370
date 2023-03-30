@@ -1,11 +1,11 @@
 #aboutuspic{
-    height: 300px;
-    width: 500px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+  height: 300px;
+  width: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .col.food-waste{
 text-align: justify;
 background-color: #5C7C64;
@@ -30,5 +30,5 @@ padding: 4%;
 }
 
 .col.section-header{
-    padding-top:8%;
+  padding-top:8%;
 }
