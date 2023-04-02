@@ -4,8 +4,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
-
 import ReactDOM from 'react-dom'
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import 'firebase/compat/analytics';
+
+
+firebase.initializeApp({
+  // your config
+  apiKey: "AIzaSyDPrvNRiqlpUh4Tlqh3lrBTZOqwmvTg6QI",
+  authDomain: "mealswipes-f0902.firebaseapp.com",
+  projectId: "mealswipes-f0902",
+  storageBucket: "mealswipes-f0902.appspot.com",
+  messagingSenderId: "1016636753973",
+  appId: "1:1016636753973:web:cf9bc5028c130674a6097c",
+  measurementId: "G-E1M9GX8M3E"
+})
+
+const auth = firebase.auth();
+const firestore = firebase.firestore();
+const analytics = firebase.analytics();
+
 
 //const element = <FontAwesomeIcon icon={faClipboardCheck} />
 
@@ -15,7 +38,8 @@ export default function Donor_UI () {
 /*    const [title, setTitle] = useState('');
     const [quantity, setQuantity] = useState('');
     const [description, setDescription] = useState('');
-    const [expireTime, setExpireTime] = useState('');
+    const [expireTime, setExpireTime] = useState('');'
+    const [messages] = useCollectionData(query, { idField: 'id' });
 
 
 
@@ -39,7 +63,26 @@ export default function Donor_UI () {
                 console.log(error);
             });
     } */
+    const navigate = useNavigate();
+    const tasksRef = firestore.collection('tasks'); // collect the tasks from the database!
+    const [formValue, setFormValue] = useState({ title: '', quantity: '', description: '', availability: ''});
+    const sendTask = async (e) => {
+        navigate("/donortimeline"); // moved this code from the old submit button event handler
 
+        e.preventDefault();
+    
+        await tasksRef.add({ // this code adds the form data to the backend database under the 'task' collection
+          title: formValue.title,
+          quantity: formValue.quantity,
+          description: formValue.description,
+          availability: formValue.availability,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          status:'available' // default status!
+        })
+    
+        setFormValue({ title: '', quantity: '', description: '', availability: '' });
+        //dummy.current.scrollIntoView({ behavior: 'smooth' });
+      }
     
     return (
 
@@ -50,7 +93,7 @@ export default function Donor_UI () {
             <Donor_Header />
             <p>s</p>
             <p> ad</p>
-<div className="row restaurant-cards"> {/* CARDS */}
+<div className="row restaurant-cards"> {/* CARDS */}  
   <div className="col card create-task mt-3 mx-4"> {/* FIRST CARD */}
   <FontAwesomeIcon icon={faClipboardCheck} size="2xl" />
     <p></p>
@@ -58,17 +101,17 @@ export default function Donor_UI () {
       <div className="row">
         <h5 className="card-title">CREATE NEW TASK</h5>
       </div>
-      <form id="form" className="row">
+      <form id="form" className="row" onSubmit={sendTask}>
         <label htmlFor="title"><b>Donation Title:</b></label>
-        <input type="text" placeholder="Give a name for your donation." name="title" required />
+        <input type="text" onChange={(e) => setFormValue({ ...formValue, title: e.target.value })} placeholder="Give a name for your donation." name="title" required />
         <label htmlFor="quantity"><b>Quantity:</b></label>
-        <input type="text" placeholder="How many servings (roughly)?" name="quantity" required />
+        <input type="text" onChange={(e) => setFormValue({ ...formValue, quantity: e.target.value })} placeholder="How many servings (roughly)?" name="quantity" required />
         <label htmlFor="description"><b>Description:</b></label>
-        <input type="text" placeholder="Provide a brief description of what you're donating." name="description" required />
+        <input type="text" onChange={(e) => setFormValue({ ...formValue, description: e.target.value })} placeholder="Provide a brief description of what you're donating." name="description" required />
         <p> </p>
         <p> </p>
         <label htmlFor="availability">When can this donation be picked up?</label>
-        <select name="availability" id="availability">
+        <select name="availability" onChange={(e) => setFormValue({ ...formValue, address: e.target.value })} id="availability">
           <option value="12PM">12:00 PM</option>
           <option value="1PM">1:00 PM</option>
           <option value="2PM">2:00 PM</option>
@@ -93,7 +136,7 @@ export default function Donor_UI () {
         <button>NOTIFY <br />VOLUNTEERS</button>
       </div>
     </div>
-  </div>
+  </div> {/*END FIRST CARD*/}
   <div className="col card upcoming-trips mt-3"> {/* SECOND CARD */}
     <FontAwesomeIcon icon={faPlusCircle} size="2xl" />
     <p></p>
