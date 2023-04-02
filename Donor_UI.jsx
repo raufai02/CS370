@@ -12,6 +12,34 @@ import ReactDOM from 'react-dom'
 
 export default function Donor_UI () {
 
+/*    const [title, setTitle] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [description, setDescription] = useState('');
+    const [expireTime, setExpireTime] = useState('');
+
+
+
+    const post = (e) => {
+        e.preventDefault();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                console.log(userCredential.user.uid);
+                // Added handleSubmit() to link to new page
+                handleSubmit();
+                return setDoc(doc(db, "users", userCredential.user.uid),{
+                    role: "donor",
+                    name: name,
+                    phoneNum: phoneNum,
+                    address: address,
+                    license: license
+                });
+            }).then((userCredential) => {
+        })
+            .catch((error) => {
+                console.log(error);
+            });
+    }  */
+
     
     return (
 
