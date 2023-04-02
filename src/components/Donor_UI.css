@@ -1,0 +1,85 @@
+/* ----------------------------------- RESTAURANT DASHBOARD ---------------------------------------------- */
+
+.push {
+    padding-bottom: 8%;
+}
+
+.restaurant-cards{
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  
+  .restaurant-cards .col{
+    padding: 2%;
+  }
+  
+  .restaurant-cards i{
+    text-align: center;
+    font-size: 8vh;
+  }
+  
+  .restaurant-cards  h5{
+    text-align:  center;
+    font-weight: 2%;
+  }
+  
+  .restaurant-cards .pane a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  
+  .restaurant-cards .create-task .button{
+    margin-top: 10%;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
+  .restaurant-cards .create-task button{
+    background-color: #284026;
+    border: none;
+    color: white;
+    font-weight:600;
+    font-size: 2.5vh;;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  
+  .restaurant-cards .upcoming-trips button{
+    background: none;
+    background-color: none;
+    border: none;
+    color: grey;
+    text-align: right;
+    align-self: right;
+    width: fit-content;
+  }
+
+  .restaurant-cards .chatbubbles{
+    color: gray;
+    display: flex;
+    padding: 20px;
+    width: fit-content;
+    
+  }
+  
+  
+  .restaurant-cards .upcoming-trips .startchat i{
+    font-size: 3vh;
+    padding: 1%;
+    color: black;
+    border: none;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1px;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+  
+  .restaurant-cards .upcoming-trips .startchat{
+    text-decoration: none;
+    color: black;
+  }
