@@ -1,4 +1,4 @@
-import Donor_Header from '../Donor/Donor_Header.jsx';
+import Donor_Header from '../Donor_Header/Donor_Header.jsx';
 import './Donor_UI.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboardCheck } from '@fortawesome/free-solid-svg-icons'
@@ -35,39 +35,11 @@ const analytics = firebase.analytics();
 
 export default function Donor_UI () {
 
-/*    const [title, setTitle] = useState('');
-    const [quantity, setQuantity] = useState('');
-    const [description, setDescription] = useState('');
-    const [expireTime, setExpireTime] = useState('');'
-    const [messages] = useCollectionData(query, { idField: 'id' });
-
-
-
-    const post = (e) => {
-        e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(userCredential => {
-                console.log(userCredential.user.uid);
-                // Added handleSubmit() to link to new page
-                handleSubmit();
-                return setDoc(doc(db, "users", userCredential.user.uid),{
-                    role: "donor",
-                    name: name,
-                    phoneNum: phoneNum,
-                    address: address,
-                    license: license
-                });
-            }).then((userCredential) => {
-        })
-            .catch((error) => {
-                console.log(error);
-            });
-    } */
     const navigate = useNavigate();
     const tasksRef = firestore.collection('tasks'); // collect the tasks from the database!
     const [formValue, setFormValue] = useState({ title: '', quantity: '', description: '', availability: ''});
     const sendTask = async (e) => {
-        navigate("/donortimeline"); // moved this code from the old submit button event handler
+        navigate("/donorui"); // moved this code from the old submit button event handler
 
         e.preventDefault();
     
@@ -91,8 +63,7 @@ export default function Donor_UI () {
 
             
             <Donor_Header />
-            <p>s</p>
-            <p> ad</p>
+            <section className="push"></section>
 <div className="row restaurant-cards"> {/* CARDS */}  
   <div className="col card create-task mt-3 mx-4"> {/* FIRST CARD */}
   <FontAwesomeIcon icon={faClipboardCheck} size="2xl" />
@@ -111,7 +82,7 @@ export default function Donor_UI () {
         <p> </p>
         <p> </p>
         <label htmlFor="availability">When can this donation be picked up?</label>
-        <select name="availability" onChange={(e) => setFormValue({ ...formValue, address: e.target.value })} id="availability">
+        <select name="availability" onChange={(e) => setFormValue({ ...formValue, availability: e.target.value })} id="availability">
           <option value="12PM">12:00 PM</option>
           <option value="1PM">1:00 PM</option>
           <option value="2PM">2:00 PM</option>

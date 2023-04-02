@@ -1,7 +1,7 @@
 import './Header.css';
 import {Link} from "react-router-dom";
 
-function Header(props){
+export default function Header(props){
     return(
         <nav className="navbar navbar-expand-lg fixed-top navbar-light bg-light">
             <div className="container-fluid">
@@ -26,4 +26,3 @@ function Header(props){
         </nav>
     )
 }
-export default Header;

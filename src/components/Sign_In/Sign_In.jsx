@@ -1,25 +1,17 @@
-//import Header from '../Header/Header.jsx';
-//import './Sign_In.css';
-//import {Link} from "react-router-dom";
-import volunteer from './volunteer.jpg';
-//import { useNavigate } from 'react-router-dom';
-//import { Button } from 'react-native';
-
+import volunteer from './volunteer.png';
 import Header from '../Header/Header.jsx';
 import './Sign_In.css';
 import {Link} from "react-router-dom";
-
 import React, {useState, useEffect} from 'react';
-
 import { auth } from "../../firebase";
-
-
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {db} from "../../firebase";
 import {doc, setDoc, getDoc} from "firebase/firestore";
 import {useNavigate} from 'react-router-dom';
-  
+
+
+
 export default function Sign_In(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -74,13 +66,15 @@ export default function Sign_In(){
     // Redirect to volunteer ui
     
     if(role=="volunteer") {
-        navigate('/donorui');
+        navigate('/volunteerui');
     }
     if(role=="donor") {
         navigate('/donorui');
     }
     
     };
+
+
 
 
 
@@ -105,7 +99,7 @@ export default function Sign_In(){
                     </label>
                 </div>
                 <div className="container">
-                <span className="psw">FORGOT <a className="forgotpass" href="">PASSWORD?</a></span>
+                <span className="psw">FORGOT <a className="forgotpass" href="#">PASSWORD?</a></span>
                 <p>NOT A MEMBER? SIGN UP <Link to='/onboarding'>HERE</Link> </p>
                 </div>
             </section>

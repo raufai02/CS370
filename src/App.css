@@ -25,113 +25,66 @@ p{font-size: 3.5vh;}
 
 /* ----------------------------------- SIGNUP PAGE ---------------------------------------------- */
 
-#section2 .row{
-  height: 30%;
-}
 
-#section2 .row.donor {
-
-  padding-top: 1%;
-}
-
-#section2 .row.shelter {
-
-  padding-top: 1%;
-}
-
-#section2 .col{
-  padding: 2%;
-  text-align: center;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-#section2 .row.donor .col{
-  background-color: #AACDDF;
-}
-
-#section2 .row.volunteer .col{
-  background-color: #587F97;
-}
-
-#section2 .row.shelter .col{
-  background-color: #AADFDB;
-}
-
-#section2 a{
-  text-decoration: none;
-}
 
 /* ----------------------------------- VOLUNTEER/RESTAURANT SIGN UP FORM* ---------------------------------------------- */
 
 
-#section3 .col-md-3{
-  background: #A2B8A0;
-  padding: 4%;
-  border-top-left-radius: 0.5rem;
-  border-bottom-left-radius: 0.5rem;
-}
 
-#section3 .contact-info h1{
-  font-size: 4.5vh;
-  text-align: center;
-}
-
-
-#section3 .contact-info h2{
-  font-size: 3vh;
-  text-align: center;
-}
-
-#section3 img{
-  width: 100%;
-  height: auto;
-  margin-bottom: 20%;
-}
-
-
-#section3 .col-md-9{
-  padding: 3%;
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-#section3 .contact-form label{
-  font-weight:600;
-}
-#section3 .contact-form button{
-  background: #284026;
-  color: #fff;
-  font-weight: 600;
-  width: 25%;
-}
-#section3 .contact-form button:focus{
-  box-shadow:none;
-}
-
-#section3 .form-group p{opacity: 0;}
-#section3 .form-control ~ p{opacity:0;}
-#section3 .form-group .invalid ~ p{
-  opacity: 1; color: 
-  red; font-size: 3vh;
-}
-#section3 .form-check .invalid ~ p{
-  opacity: 1;
-  color: red;
-  font-size: 3vh;
-}
 
 
 /* ----------------------------------- VOLUNTEER PAGE ---------------------------------------------- */
 
-.map-container-2{
-  height: 70vh;
+/* ----------------------------------- RESTAURANT PAGE ---------------------------------------------- */
+
+
+/* ----------------------------------- PROFILE INFORMATION ---------------------------------------------- */
+
+.profile-info{
+  background-color: #f4f5f7;
 }
 
-.map-container-2 iframe{
+.profile-info .backarrow i{
+  padding: 1%;
+  background-color: #D5D6DA;
+  border-top-left-radius: 1rem; 
+  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem; 
+  border-bottom-right-radius: 1rem;
+  align-self: left;
+}
 
-  width: 100%;
-  height: 100%;
+
+.profile-info .backarrow i:hover{
+  border: 1px solid #888;
+  background-color: #ddd;
+}
+
+.profile-info .backarrow a{
+  text-decoration: none;
+  color: black;
+  border: none;
+  background-color: none;
+  background: none;
+  display: flex;
+  justify-content: left;
+}
+
+
+.profile-card{
+  border-radius: .5rem;
+}
+
+.profile-pic{
+  border-top-left-radius: .5rem; 
+  border-bottom-left-radius: .5rem;
+}
+
+.profile-pic img{
+  width: 80px;
+}
+
+.profile-info p{
+  font-size: 2.5vh;
+  color: grey;
 }
