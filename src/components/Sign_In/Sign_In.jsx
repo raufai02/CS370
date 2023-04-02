@@ -1,7 +1,7 @@
+import volunteer from './volunteer.png';
 import Header from '../Header/Header.jsx';
 import './Sign_In.css';
 import {Link} from "react-router-dom";
-import volunteer from './volunteer.png';
 import React, {useState, useEffect} from 'react';
 import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut } from 'firebase/auth';
@@ -9,6 +9,7 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {db} from "../../firebase";
 import {doc, setDoc, getDoc} from "firebase/firestore";
 import {useNavigate} from 'react-router-dom';
+
 
 
 export default function Sign_In(){
@@ -63,7 +64,14 @@ export default function Sign_In(){
     const handleSubmit = event => {
 
     // Redirect to volunteer ui
-    navigate('/volunteerui');
+    
+    if(role=="volunteer") {
+        navigate('/volunteerui');
+    }
+    if(role=="donor") {
+        navigate('/donorui');
+    }
+    
     };
 
 

@@ -47,7 +47,7 @@ export default function Volunteer_Sign_Up(){
     const handleSubmit = event => {
 
     // Redirect to volunteer ui
-    navigate('/volunteerui');
+    navigate('/donorui');
     };
 
 

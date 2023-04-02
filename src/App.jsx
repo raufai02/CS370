@@ -9,6 +9,10 @@ import V_Profile_Info from './components/V_Profile_Info/V_Profile_Info.jsx';
 import V_Reviews from './components/V_Reviews/V_Reviews.jsx';
 import Donor_Sign_Up from './components/Donor_Sign_Up/Donor_Sign_Up.jsx';
 import Shelter_Sign_Up from './components/Shelter_Sign_Up/Shelter_Sign_Up.jsx';
+import Donor_UI from './components/Donor_UI/Donor_UI.jsx';
+import Donor_Info from './components/Donor_Info/Donor_Info.jsx';
+import Donor_Reviews from './components/Donor_Reviews/Donor_Reviews.jsx';
+
 
 import React from "react";
 import './App.css';
@@ -30,6 +34,9 @@ function App() {
         <Route path='/vreviews' element={<V_Reviews/>}  />
         <Route path='/donsignup' element={<Donor_Sign_Up/>}  />
         <Route path='/shelsignup' element={<Shelter_Sign_Up/>}  />
+        <Route path='/donorui' element={<Donor_UI/>}  />
+        <Route path='/donorinfo' element={<Donor_Info/>}  />
+        <Route path='/donorreviews' element={<Donor_Reviews/>}  />
       </Routes>
     </BrowserRouter> 
   )

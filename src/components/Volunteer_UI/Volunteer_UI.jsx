@@ -1,7 +1,6 @@
 import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
 import './Volunteer_UI.css';
 import {FilePerson} from 'react-bootstrap-icons';
-
 //<FilePerson className="centerFile"/>
 
 export default function Volunteer_UI(){
@@ -9,6 +8,7 @@ export default function Volunteer_UI(){
         <body>
             <VHeader num={4}/>
             <section className="push"></section>
+        
 
             <div className="row volunteer-cards"> {/* CARDS */}
                 {/* SECOND CARD */}
