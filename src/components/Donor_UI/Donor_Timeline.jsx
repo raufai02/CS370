@@ -1,6 +1,6 @@
 
 // import ReactDOM from 'react-dom'
-import React, { useRef, useState, useEffect} from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore';
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -36,121 +36,157 @@ const firestore = firebase.firestore();
 
 
 
-export default function Timeline(){
+export default function Timeline() {
 
-    
 
-    function UpcomingTasks() {
 
-        const [showModal, setShowModal] = useState(false);
+  function UpcomingTasks() {
 
-        const handleGetDescription = () => {
-            setShowModal(true);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleGetDescription = () => {
+      setShowModal(true);
+    }
+
+    const handleRejectClick = () => {
+      setShowModal(false);
+    };
+
+    const modalStyle = {
+      display: showModal ? 'flex' : 'none',
+      justifyContent: 'center',
+      position: 'fixed',
+      top: 100,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      zIndex: 999,
+    };
+
+
+    function TaskModal(props) {
+      const { task, show, onHide } = props;
+
+      return (
+        <Modal show={show} onHide={onHide} backdrop="static" keyboard={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>{task.description}</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={onHide}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
+
+    // export default TaskModal;
+
+
+    const [tasks, setTasks] = useState([]);
+
+    useEffect(() => {
+      const unsub = auth.onAuthStateChanged((authObj) => {
+        unsub();
+        if (authObj) {
+          async function fetchTasks() {
+            const taskCollection = collection(firestore, 'tasks');
+            const que = query(taskCollection, where('uid', '==', auth.currentUser.uid));
+            const snapshot = await getDocs(que);
+            const taskData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setTasks(taskData);
+          }
+          fetchTasks();
+        } else {
+          console.log("not logged in");
         }
-
-        const handleRejectClick = () => {
-            setShowModal(false);
-        };
-
-        const modalStyle = {
-            display: showModal ? 'flex' : 'none',
-            justifyContent: 'center',
-            position: 'fixed',
-            top:100,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 999,
-        };
+      });
+    }, []);
 
 
+    return (
+      <>
+        <FontAwesomeIcon icon={faPlusCircle} size="2xl" />
+        <p></p>
+        <div className="card-body">
+          <h5 className="card-title">YOUR POSTED TASKS</h5>
+          {tasks.map((task) => (
+            <div key={task.id} className="row py-3 border-bottom">
+              <div className="col">
+                <p className="small m-0">Available by: {task.availability}</p>
+              </div>
+              <div className="col">
+                <button>Status: {task.status}</button>
+              </div>
+              <div className="col">
+                <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
+              </div>
+              <div className='col'>
+                <p className="small m-0">Title: {task.title}</p>
+              </div>
+              <div className="col">
+                <button onClick={() => handleGetDescription()}>Details:</button>
+              </div>
 
-
-
-
-        const [tasks, setTasks] = useState([]);
-  
-        useEffect(() => {
-          const unsub = auth.onAuthStateChanged((authObj) => {
-            unsub();
-            if (authObj) {
-              async function fetchTasks() {
-                  const taskCollection = collection(firestore, 'tasks');
-                  const que = query(taskCollection, where('uid', '==', auth.currentUser.uid));
-                  const snapshot = await getDocs(que);
-                  const taskData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-                  setTasks(taskData);
-                }
-                fetchTasks();
-            } else {
-              console.log("not logged in");
-            }
-          });
-        },[]);
-           
-  
-        return (
-          <>
-          <FontAwesomeIcon icon={faPlusCircle} size="2xl" />
-            <p></p>
-            <div className="card-body">
-              <h5 className="card-title">YOUR POSTED TASKS</h5>
-              {tasks.map((task) => (
-                <div key={task.id} className="row py-3 border-bottom">
-                  <div className="col">
-                    <p className="small m-0">Available by: {task.availability}</p>
-                  </div>
-                  <div className="col">
-                    <button>Status: {task.status}</button>
-                  </div>
-                  <div className="col">
-                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
-                  </div>
-                  <div className='col'>
-                    <p className="small m-0">Title: {task.title}</p>
-                  </div>
-                  <div className="col">
-                    <button onClick={() => handleGetDescription()}>Details:</button>
-                  </div>
-                </div>
-              ))}
             </div>
-            <Modal
-                show={showModal}
-                onHide={handleRejectClick}
-                backdrop="static"
-                keyboard={false}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>Details</Modal.Title>
-                </Modal.Header>
-                <Modal.Footer>
-                    <p>God</p>
-
-                    <Button variant="secondary" onClick={handleRejectClick}>
-                        Cancel
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            
-          </>
-            
-          
-        );
-      }
+          ))}
+        </div>
+        {tasks.map((task) => (
+          <div key={task.id} className="row py-3 border-bottom">
+            ...
+            <div className="col">
+              <button onClick={() => handleGetDescription(task)}>Details:</button>
+            </div>
+            <TaskModal task = {task} show={showModal} onHide={handleRejectClick} task={task} />
+          </div>
+        ))}
 
 
+        {/* <Modal
+          show={showModal}
+          onHide={handleRejectClick}
+          backdrop="static"
+          keyboard={false}
+        >
 
-    
-    
+          <Modal.Header closeButton>
+            <Modal.Title>Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Footer>
+            <p>{task.description}</p>
+
+            <Button variant="secondary" onClick={handleRejectClick}>
+              Cancel
+            </Button>
+          </Modal.Footer>
+        </Modal> */}
+
+
+      </>
+
+
+    );
+  }
 
 
 
 
-    return(
-        <>
-        <UpcomingTasks></UpcomingTasks>
-        </>
-    )
+
+
+
+
+
+
+
+
+  return (
+    <>
+      <UpcomingTasks></UpcomingTasks>
+    </>
+  )
 }
