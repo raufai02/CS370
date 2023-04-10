@@ -40,9 +40,6 @@ export default function Header(props){
                             <Link to='/vprofinfo'>Profile Information</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/vreviews'>Leave a Review</Link>
-                        </li>
-                        <li className="nav-item">
                             <Link to='/' onClick={userSignOut}>Sign Out</Link>
                         </li>
                     </ul>

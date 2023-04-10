@@ -3,7 +3,7 @@ form #signin {border: 3px solid whitesmoke;}
 .here, .forgotpass{color: blue;}
 .here:hover, .forgotpass:hover{color: #284026}
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -42,9 +42,11 @@ img.avatar {
 }
 
 span.psw {
+    display:block;
     float: right;
-    padding-top: 16px;
+    padding-top: 0px;
 }
+
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {

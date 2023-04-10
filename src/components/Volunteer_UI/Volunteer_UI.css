@@ -83,3 +83,17 @@
   text-decoration: none;
   color: black;
 }
+
+.accept{
+  width: 30%;
+}
+
+.card-body{
+  overflow-y: scroll;
+  height: 500px;
+}
+
+.task-container{
+  border: 2px solid black;
+  border-radius: 25px;
+}

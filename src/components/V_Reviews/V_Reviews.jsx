@@ -6,7 +6,6 @@ export default function V_Reviews(){
         <body>
             <VHeader />
             <div className='push'></div>
-            <div className="row backarrow"><a href="volunteer.html"><i className="bi bi-arrow-left" /></a></div>
             <div className="row">
                 <div className="col card mt-3">
                 <div className="card-body">

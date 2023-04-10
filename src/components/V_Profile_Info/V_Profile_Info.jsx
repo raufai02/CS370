@@ -1,6 +1,8 @@
 import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
 import './V_Profile_Info.css';
-import {FilePerson} from 'react-bootstrap-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import {Link} from "react-router-dom";
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../firebase";
 
@@ -30,9 +32,10 @@ export default function V_Profile_Info(){
     return(
         <body>
             <VHeader num={5}/>
+            <section className="push"></section>
             <section className="vh-100 profile-info">
                 <div className="container py-5 h-100">
-                    <div className="row backarrow"><a href="volunteer.html"><i className="bi bi-arrow-left" /></a></div>
+                <div className="row backarrow"><Link to='/volunteerui'><FontAwesomeIcon icon={ faArrowCircleLeft } color="grey" size="2xl"/></Link></div> 
                     <div className="row d-flex justify-content-center align-items-center h-100 mt-0">
                         <div className="col col-lg-6 mb-4 mb-lg-0">
                             <div className="card mb-3 profile-card">

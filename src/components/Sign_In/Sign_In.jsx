@@ -71,6 +71,9 @@ export default function Sign_In(){
     if(role=="donor") {
         navigate('/donorui');
     }
+    if(role=="shelter") {
+        navigate('/shelui');
+    }
     
     };
 
@@ -99,8 +102,9 @@ export default function Sign_In(){
                     </label>
                 </div>
                 <div className="container">
-                <span className="psw">FORGOT <a className="forgotpass" href="#">PASSWORD?</a></span>
-                <p>NOT A MEMBER? SIGN UP <Link to='/onboarding'>HERE</Link> </p>
+                    
+                    <span className="psw">FORGOT <a className="forgotpass" href="#">PASSWORD?</a></span>
+                    <span className="signup">NOT A MEMBER? SIGN UP <Link to='/onboarding'>HERE</Link> </span>
                 </div>
             </section>
         </body>

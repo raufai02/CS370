@@ -8,7 +8,7 @@ import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import {useNavigate} from 'react-router-dom';
 
 
-export default function Donor_Header(props){
+export default function Shelter_Header(props){
     const userSignOut = () => {
         signOut(auth).then(() =>{
             console.log('sign out successful');
@@ -36,13 +36,10 @@ export default function Donor_Header(props){
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link to='/donorui'>Home</Link>
+                            <Link to='/shelui'>Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/donorinfo'>Profile</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to='/donorui'>History</Link>
+                            <Link to='/shelinfo'>Profile</Link>
                         </li>
                         <li className="nav-item">
                             <Link to='/' onClick={userSignOut}>Sign Out</Link>

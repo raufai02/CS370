@@ -1,16 +1,18 @@
-import Donor_Header from '../Donor_Header/Donor_Header.jsx';
-import './Donor_Info.css';
+import SHeader from '../Shelter_Header/Shelter_Header.jsx';
+import './Shelter_Info.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
+import {Link} from "react-router-dom";
+
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../../firebase";
-import {Link} from "react-router-dom";
 
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
-export default function Rest_Info(){
+
+export default function Shelter_Info(){
     const user = auth.currentUser;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
@@ -28,10 +30,9 @@ export default function Rest_Info(){
     useEffect(() => {
         userInfo(user);
     })
-
     return(
         <body>
-            <Donor_Header />
+            <SHeader></SHeader>
             <section className="vh-100 profile-info">
                 <section className="push"></section>
                 <div className="container py-5 h-100">
@@ -80,6 +81,7 @@ export default function Rest_Info(){
                     </div>
                 </div>
             </section>
+
         </body>
     )
 }
