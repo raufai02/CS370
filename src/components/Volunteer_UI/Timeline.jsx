@@ -3,7 +3,7 @@ import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import {useCol} from "react-bootstrap/Col";
 import {useEffect, useRef, useState} from "react";
-import { collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
+import { collection, query, where, orderBy, limit, getDocs, updateDoc, doc } from "firebase/firestore";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -20,6 +20,7 @@ function StatusComponent(props) {
 }
 
 function Tasks(props){
+    console.log(props);
     const { task } = props;
     const { address, createdAt, description, status, uid, photoURL } = task;
 
@@ -27,10 +28,11 @@ function Tasks(props){
 
     const [taskStatus, setTaskStatus] = useState(status);
 
-    const handleAcceptClick = () => {
+    function changeTaskStatus() { // handle clicking 'accept'!!!
         setTaskStatus('in-progress');
-        setShowModal(false);
-    };
+    }
+
+    
 
     const handleRejectClick = () => {
         setTaskStatus('available');
@@ -51,13 +53,13 @@ function Tasks(props){
 
     const minsAgo = (oldDate) => {
         const currentDate = new Date();
-        const diff= currentDate-oldDate;
+        const diff= (currentDate-oldDate);
         let result = 0;
-        if (diff>60){
-            result += Math.floor(diff/60);
+        if (diff>3600){
+            result += Math.floor(diff/3600);
             return result + " hours ago";
         }
-        else return Math.floor(diff) + " minutes ago";
+        else return Math.floor(diff/60) + " minutes ago";
     }
 
     return (
@@ -68,6 +70,7 @@ function Tasks(props){
                 <div className="col">
                     <div className="card-title my-0 mb-2 h6">{`Posted ${minsAgo(createdAt)}`}</div>
                     <p className="small m-0">{`Description: ${description}`}</p>
+                    <p className="small m-0">{`Status: ${status}`}</p>
                 </div>
                 <div className="col buttons">
                     <button className="accept" onClick={() => setShowModal(true)}>Accept?<i className="bi bi-check-lg" /></button>
@@ -108,16 +111,13 @@ export default function Timeline(){
 
     const [taskStatus, setTaskStatus ] = useState('available');
 
-    function changeTaskStatus() { // handle clicking 'accept'!!!
-        setTaskStatus('in-progress');
-    }
-
 
 
 
     return(
         <div>
-            {tasks ? tasks && tasks.map(task => <Tasks key={task.id} task={task} />) : 'Loading...'}
+            {tasks ? tasks && tasks.map(task =>
+                <Tasks key={task.id} task={task}/>) : 'Loading...'}
             <span ref={dummy}></span>
         </div>
     )

@@ -7,7 +7,7 @@ import { faComment } from '@fortawesome/free-solid-svg-icons'
 // import ReactDOM from 'react-dom'
 import React, { useRef, useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, setDoc } from 'firebase/firestore';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -92,7 +92,8 @@ export default function Donor_UI () {
     const sendTask = async (e) => {
       navigate("/donorui");
       e.preventDefault();
-      await tasksRef.add({
+      const newTaskRef = doc(tasksRef);
+      await setDoc(newTaskRef, {
           title: formValue.title,
           quantity: formValue.quantity,
           description: formValue.description,
