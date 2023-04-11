@@ -2,22 +2,22 @@ import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
 import './V_Profile_Info.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import {Link} from "react-router-dom";
-import {doc, getDoc} from "firebase/firestore";
-import {db} from "../../firebase";
+import { Link } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
-export default function V_Profile_Info(){
+export default function V_Profile_Info() {
     const user = auth.currentUser;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [name, setName] = useState('');
 
-    async function userInfo(authUser){
+    async function userInfo(authUser) {
         const docRef = doc(db, "users", authUser.uid);
         const docSnap = await getDoc(docRef);
         setRole(String(docSnap.data().role));
@@ -29,13 +29,13 @@ export default function V_Profile_Info(){
         userInfo(user);
     })
 
-    return(
+    return (
         <body>
-            <VHeader num={5}/>
+            <VHeader num={5} />
             <section className="push"></section>
             <section className="vh-100 profile-info">
                 <div className="container py-5 h-100">
-                <div className="row backarrow"><Link to='/volunteerui'><FontAwesomeIcon icon={ faArrowCircleLeft } color="grey" size="2xl"/></Link></div> 
+                    <div className="row backarrow"><Link to='/volunteerui'><FontAwesomeIcon icon={faArrowCircleLeft} color="grey" size="2xl" /></Link></div>
                     <div className="row d-flex justify-content-center align-items-center h-100 mt-0">
                         <div className="col col-lg-6 mb-4 mb-lg-0">
                             <div className="card mb-3 profile-card">

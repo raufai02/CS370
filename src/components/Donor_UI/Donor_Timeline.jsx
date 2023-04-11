@@ -87,21 +87,21 @@ function Tasks(props) {
         <>
 
             <div className="row py-3 border-bottom">
-                                <div className="col">
-                                    <p className="small m-0">Available by: {task.availability}</p>
-                                </div>
-                                <div className="col">
-                                    <button>Status: {task.status}</button>
-                                </div>
-                                <div className="col">
-                                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
-                                </div>
-                                <div className='col'>
-                                    <p className="small m-0">Title: {task.title}</p>
-                                </div>
-                                <div className="col">
-                                    <button onClick={() => setShowModal(true)}>Details:</button>
-                                </div>
+                <div className="col">
+                    <p className="small m-0">Available by: {task.availability}</p>
+                </div>
+                <div className="col">
+                    <button>Status: {task.status}</button>
+                </div>
+                <div className="col">
+                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
+                </div>
+                <div className='col'>
+                    <p className="small m-0">Title: {task.title}</p>
+                </div>
+                <div className="col">
+                    <button onClick={() => setShowModal(true)}>Details:</button>
+                </div>
             </div>
             <Modal
                 show={showModal}
@@ -143,33 +143,33 @@ export default function Timeline() {
 
     const [tasks, setTasks] = useState([]);
 
-        useEffect(() => {
-            const unsub = auth.onAuthStateChanged((authObj) => {
-                unsub();
-                if (authObj) {
-                    async function fetchTasks() {
-                        const taskCollection = collection(firestore, 'tasks');
-                        const que = query(taskCollection, where('uid', '==', auth.currentUser.uid));
-                        const snapshot = await getDocs(que);
-                        const taskData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-                        setTasks(taskData);
-                    }
-                    fetchTasks();
-                } else {
-                    console.log("not logged in");
+    useEffect(() => {
+        const unsub = auth.onAuthStateChanged((authObj) => {
+            unsub();
+            if (authObj) {
+                async function fetchTasks() {
+                    const taskCollection = collection(firestore, 'tasks');
+                    const que = query(taskCollection, where('uid', '==', auth.currentUser.uid));
+                    const snapshot = await getDocs(que);
+                    const taskData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+                    setTasks(taskData);
                 }
-            });
-        }, []);
+                fetchTasks();
+            } else {
+                console.log("not logged in");
+            }
+        });
+    }, []);
 
     return (
         <>
-        <FontAwesomeIcon icon={faPlusCircle} size="2xl" />
-                <p></p>
-        <div className="card-body">
-                    <h5 className="card-title">YOUR POSTED TASKS</h5>
-            {tasks ? tasks && tasks.map(task => <Tasks key={task.id} task={task} />) : 'Loading...'}
-            <span ref={dummy}></span>
-        </div>
+            <FontAwesomeIcon icon={faPlusCircle} size="2xl" />
+            <p></p>
+            <div className="card-body">
+                <h5 className="card-title">YOUR POSTED TASKS</h5>
+                {tasks ? tasks && tasks.map(task => <Tasks key={task.id} task={task} />) : 'Loading...'}
+                <span ref={dummy}></span>
+            </div>
         </>
     )
 }

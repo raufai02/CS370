@@ -3,13 +3,13 @@ import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db } from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '../Header/Header.jsx';
 import './Volunteer_Sign_Up.css';
 import volunteerimg from './Volunteer.jpg';
 
-export default function Volunteer_Sign_Up(){
+export default function Volunteer_Sign_Up() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -25,18 +25,18 @@ export default function Volunteer_Sign_Up(){
                 console.log(userCredential.user.uid);
                 // Added handleSubmit() to link to new page
                 handleSubmit();
-                return setDoc(doc(db, "users", userCredential.user.uid),{
+                return setDoc(doc(db, "users", userCredential.user.uid), {
                     role: "volunteer",
                     name: name,
                     phoneNum: phoneNum,
                     address: address
                 });
             }).then((userCredential) => {
-        })
+            })
             .catch((error) => {
                 console.log(error);
             });
-        
+
     }
 
 
@@ -45,14 +45,14 @@ export default function Volunteer_Sign_Up(){
 
     const handleSubmit = event => {
 
-    // Redirect to volunteer ui
-    navigate('/volunteerui');
+        // Redirect to volunteer ui
+        navigate('/volunteerui');
     };
 
 
-    return(
+    return (
         <body>
-            <Header num={5}/>
+            <Header num={5} />
             <section id="section3" className="container-fluid"> {/*!--CONTACT FORM --*/}
                 <div className="row">
                     <div className="col-md-3"> {/*!--LEFT COLUMN --*/}
@@ -66,7 +66,7 @@ export default function Volunteer_Sign_Up(){
                     <div className="col-md-9"> {/*!--RIGHT COLUMN --*/}
                         <div className="contact-form">
                             <form id="Vsignup" onSubmit={signUp}>
-                            {/*!--NAME--*/}
+                                {/*!--NAME--*/}
                                 <label className="form-label col-sm-2" htmlFor="fname">Full Name *:</label>
                                 <input
                                     type="text" className="form-control" id="fname" placeholder="Name" required
@@ -74,14 +74,14 @@ export default function Volunteer_Sign_Up(){
                                 </input>
 
 
-                            {/*!--PASSWORD--*/}
+                                {/*!--PASSWORD--*/}
                                 <label className="form-label col-sm-2" htmlFor="pass">Password*:</label>
                                 <input
                                     type="password" className="form-control" id="pass" placeholder="Password" required
                                     value={password} onChange={(e) => setPassword(e.target.value)}>
                                 </input>
 
-                            {/*!--EMAIL ADDRESS --*/}
+                                {/*!--EMAIL ADDRESS --*/}
                                 <label className="form-label col-sm-2" htmlFor="email">Email *:</label>
                                 <input
                                     type="email" className="form-control" id="email" placeholder="Email" required
@@ -89,38 +89,38 @@ export default function Volunteer_Sign_Up(){
                                 </input>
 
 
-                            {/*!--PHONE NUMBER --*/}
+                                {/*!--PHONE NUMBER --*/}
                                 <label className="form-label col-sm-2" htmlFor="tel">Phone Number *:</label>
                                 <input
                                     type="tel" className="form-control" id="phone" placeholder="Phone Number"
                                     required value={phoneNum} onChange={(e) => setPhoneNum(e.target.value)}>
                                 </input>
 
-                            {/*!--ADDRESS--*/}
+                                {/*!--ADDRESS--*/}
                                 <label className="form-label col-sm-2" htmlFor="add">Address *:</label>
                                 <input
                                     type="text" className="form-control" id="address" placeholder="Address" required
                                     value={address} onChange={(e) => setAddress(e.target.value)}>
                                 </input>
 
-                            {/*!--COMMENTS--*/}
+                                {/*!--COMMENTS--*/}
                                 <label className="form-label col-sm-2" htmlFor="comment">Comments:</label>
                                 <textarea className="form-control" rows="5" id="comment"></textarea>
 
-                            {/*!--CHECKBOX--*/}
+                                {/*!--CHECKBOX--*/}
                                 <input type="checkbox" className="form-check-input" id="TeryC" required></input>
-                                    <label
-                                        className="form-check-label" htmlFor="TeryC">Accept Terms and Conditions *
-                                    </label>
+                                <label
+                                    className="form-check-label" htmlFor="TeryC">Accept Terms and Conditions *
+                                </label>
 
-                            {/*!--SEND--*/}
+                                {/*!--SEND--*/}
                                 <button id="submit" type="submit">Send</button>
 
                             </form>
                         </div>
                     </div>
                 </div>
-        </section>
+            </section>
 
         </body>
     )

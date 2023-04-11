@@ -70,10 +70,10 @@ export default function Donor_UI() {
           <FontAwesomeIcon icon={faClipboardCheck} size="2xl" />
           <p></p>
           <div className="row">
-              <h5 className="card-title">CREATE NEW TASK</h5>
-            </div>
+            <h5 className="card-title">CREATE NEW TASK</h5>
+          </div>
           <div className="card-body">
-            
+
             <form id="form" className="row" onSubmit={sendTask}>
               <label htmlFor="title"><b>Donation Title:</b></label>
               <input type="text" onChange={(e) => setFormValue({ ...formValue, title: e.target.value })} placeholder="Give a name for your donation." name="title" required />
@@ -109,7 +109,7 @@ export default function Donor_UI() {
         </div> {/*END FIRST CARD*/}
         <div className="col card upcoming-trips mt-3">
           <Donor_Timeline></Donor_Timeline>
-          
+
         </div>
 
       </div>

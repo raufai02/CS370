@@ -2,22 +2,22 @@ import Donor_Header from '../Donor_Header/Donor_Header.jsx';
 import './Donor_Info.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import {doc, getDoc} from "firebase/firestore";
-import {db} from "../../firebase";
-import {Link} from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
-export default function Rest_Info(){
+export default function Rest_Info() {
     const user = auth.currentUser;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [name, setName] = useState('');
 
-    async function userInfo(authUser){
+    async function userInfo(authUser) {
         const docRef = doc(db, "users", authUser.uid);
         const docSnap = await getDoc(docRef);
         setRole(String(docSnap.data().role));
@@ -29,13 +29,13 @@ export default function Rest_Info(){
         userInfo(user);
     })
 
-    return(
+    return (
         <body>
             <Donor_Header />
             <section className="vh-100 profile-info">
                 <section className="push"></section>
                 <div className="container py-5 h-100">
-                <div className="row backarrow"><Link to='/donorui'><FontAwesomeIcon icon={ faArrowCircleLeft } color="grey" size="2xl"/></Link></div> 
+                    <div className="row backarrow"><Link to='/donorui'><FontAwesomeIcon icon={faArrowCircleLeft} color="grey" size="2xl" /></Link></div>
                     <div className="row d-flex justify-content-center align-items-center h-100 mt-0">
                         <div className="col col-lg-6 mb-4 mb-lg-0">
                             <div className="card mb-3 profile-card">

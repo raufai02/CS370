@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './components/Home/Home.jsx'
 import About from './components/About/About.jsx';
 import Sign_In from './components/Sign_In/Sign_In.jsx';
@@ -25,28 +25,28 @@ import './App.css';
 
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home/>}  />
-        <Route path='/about' element={<About/>}  />
-        <Route path='/signin' element={<Sign_In/>}  />
-        <Route path='/onboarding' element={<Onboarding/>}  />
-        <Route path='/volsignup' element={<Volunteer_Sign_Up/>}  />
-        <Route path='/volunteerui' element={<Volunteer_UI/>}  />
-        <Route path='/vprofinfo' element={<V_Profile_Info/>}  />
-        <Route path='/vreviews' element={<V_Reviews/>}  />
-        <Route path='/donsignup' element={<Donor_Sign_Up/>}  />
-        <Route path='/shelsignup' element={<Shelter_Sign_Up/>}  />
-        <Route path='/donorui' element={<Donor_UI/>}  />
-        <Route path='/donorinfo' element={<Donor_Info/>}  />
-        <Route path='/donorreviews' element={<Donor_Reviews/>}  />
-        <Route path='/shelui' element={<Shelter_UI/>}  />
-        <Route path='/shelinfo' element={<Shelter_Info/>}  />
-        <Route path='/shelreviews' element={<Shelter_Reviews/>}  />
+        <Route path='/' element={<Home />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/signin' element={<Sign_In />} />
+        <Route path='/onboarding' element={<Onboarding />} />
+        <Route path='/volsignup' element={<Volunteer_Sign_Up />} />
+        <Route path='/volunteerui' element={<Volunteer_UI />} />
+        <Route path='/vprofinfo' element={<V_Profile_Info />} />
+        <Route path='/vreviews' element={<V_Reviews />} />
+        <Route path='/donsignup' element={<Donor_Sign_Up />} />
+        <Route path='/shelsignup' element={<Shelter_Sign_Up />} />
+        <Route path='/donorui' element={<Donor_UI />} />
+        <Route path='/donorinfo' element={<Donor_Info />} />
+        <Route path='/donorreviews' element={<Donor_Reviews />} />
+        <Route path='/shelui' element={<Shelter_UI />} />
+        <Route path='/shelinfo' element={<Shelter_Info />} />
+        <Route path='/shelreviews' element={<Shelter_Reviews />} />
       </Routes>
-    </BrowserRouter> 
+    </BrowserRouter>
   )
 }
 
