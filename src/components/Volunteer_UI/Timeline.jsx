@@ -3,7 +3,7 @@ import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import {useCol} from "react-bootstrap/Col";
 import {useEffect, useRef, useState} from "react";
-import { collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
+import { collection, query, where, orderBy, limit, getDocs, updateDoc, doc } from "firebase/firestore";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -24,17 +24,24 @@ function StatusComponent(props) {
 
 function Tasks(props){
     const { task } = props;
-    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability } = task;
+    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
 
     const [showModal, setShowModal] = useState(false);
 
     const [taskStatus, setTaskStatus] = useState(status);
 
-    const handleAcceptClick = () => {
-        setTaskStatus('in-progress');
+    const handleAcceptClick = async () => {
+        try{
+            const docRef = doc(db, "tasks", ref);
+            const data = { status: "in-progress"};
+            await updateDoc(docRef, data);
+        }catch(error){
+            console.error('Error updating task status: ', error)
+        }
         setShowModal(false);
-    };
 
+
+    };
     const handleRejectClick = () => {
         setTaskStatus('available');
         setShowModal(false);

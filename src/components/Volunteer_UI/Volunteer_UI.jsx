@@ -20,7 +20,7 @@ export default function Volunteer_UI(){
                 <div className="col card next-trips mt-3 mx-4">
                     <FontAwesomeIcon icon={faClipboardCheck} size="2xl" />
                     <div className="card-body">
-                        <h5 className="card-title">PENDING TRIPS</h5>
+                        <h5 className="card-title">AVAILABLE TRIPS</h5>
                         <Timeline></Timeline>
                        
                     </div>

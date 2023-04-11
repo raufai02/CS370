@@ -6,7 +6,7 @@ import { faPlusCircle, faClipboardCheck, faComment } from '@fortawesome/free-sol
 // import ReactDOM from 'react-dom'
 import React, { useRef, useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where, doc, setDoc } from 'firebase/firestore';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -48,15 +48,17 @@ export default function Donor_UI () {
     const sendTask = async (e) => {
       navigate("/donorui");
       e.preventDefault();
-      await tasksRef.add({
+      const newTaskRef = doc(tasksRef);
+      await setDoc(newTaskRef, {
           title: formValue.title,
           quantity: formValue.quantity,
           description: formValue.description,
           availability: formValue.availability,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
           uid: auth.currentUser.uid,
-          status:'available'
-      })
+          status:'available',
+          ref: newTaskRef.id
+      });
       setFormValue({ title: '', quantity: '', description: '', availability: '' });
   }
 
