@@ -131,7 +131,7 @@ function ChatTask(props) {
 
 
     const handleAcceptClick = () => {
-        setTaskStatus('in-progress');
+        setTaskStatus('volunteer-accepted'); {/* changed from in progress to volunteer-accepted*/}
         setShowModal(false);
     };
 
