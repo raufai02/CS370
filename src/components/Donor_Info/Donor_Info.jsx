@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
-export default function Rest_Info() {
+export default function Donor_Info() {
     const user = auth.currentUser;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
@@ -57,7 +57,7 @@ export default function Rest_Info() {
                                                 </div>
                                                 <div className="col-6 mb-3">
                                                     <h6>Phone Number</h6>
-                                                    <p className="text-muted">123 456 789</p>
+                                                    <p>{phoneNum}</p>
                                                 </div>
                                             </div>
                                             <h6>Past Trips</h6>
@@ -66,10 +66,6 @@ export default function Rest_Info() {
                                                 <div className="col-6 mb-3">
                                                     <h6>Meals Delivered</h6>
                                                     <p className="text-muted">34</p>
-                                                </div>
-                                                <div className="col-6 mb-3">
-                                                    <h6>Miles traveled</h6>
-                                                    <p className="text-muted">150</p>
                                                 </div>
                                             </div>
                                         </div>

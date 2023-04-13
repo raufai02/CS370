@@ -6,12 +6,13 @@ import { faPlusCircle, faClipboardCheck, faComment } from '@fortawesome/free-sol
 // import ReactDOM from 'react-dom'
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDoc, getDocs, query, where, doc, setDoc } from 'firebase/firestore';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/analytics';
+import { db } from "../../firebase";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -27,37 +28,56 @@ firebase.initializeApp({
   appId: "1:1016636753973:web:cf9bc5028c130674a6097c",
   measurementId: "G-E1M9GX8M3E"
 })
-
 const auth = firebase.auth();
 
 const firestore = firebase.firestore();
 
 
+
+
 export default function Donor_UI() {
 
-
+  
+ 
+  
 
   const navigate = useNavigate();
   const tasksRef = firestore.collection('tasks');
-  const [formValue, setFormValue] = useState({ title: '', quantity: '', description: '', availability: '' });
+  const [formValue, setFormValue] = useState({ title: '', quantity: '', description: '', availability: '12:00 PM' });
   const [loading, setLoading] = useState(false);
 
-
+  const getUserAddress = async (uid) => {
+    const userRef = firestore.collection('users').doc(uid);
+    const userDoc = await userRef.get();
+    
+    if (!userDoc.exists) {
+      throw new Error(`User with uid ${uid} not found`);
+    }
+    
+    const { address } = userDoc.data();
+    return address;
+  };
 
 
   const sendTask = async (e) => {
-    navigate("/donorui");
     e.preventDefault();
-    await tasksRef.add({
+    const newTaskRef = doc(tasksRef);
+    const d_address = await getUserAddress(auth.currentUser.uid);
+    
+    await setDoc(newTaskRef, {
       title: formValue.title,
       quantity: formValue.quantity,
       description: formValue.description,
       availability: formValue.availability,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid: auth.currentUser.uid,
-      status: 'available'
-    })
-    setFormValue({ title: '', quantity: '', description: '', availability: '' });
+      d_uid: auth.currentUser.uid,
+      status: 'available',
+      ref: newTaskRef.id,
+      d_address: d_address
+    });
+   
+    setFormValue({ title: '', quantity: '', description: '', availability: '12:00 PM' });
+    window.location.reload();
   }
 
 
@@ -69,11 +89,10 @@ export default function Donor_UI() {
         <div className="col card create-task mt-3 mx-4"> {/* FIRST CARD */}
           <FontAwesomeIcon icon={faClipboardCheck} size="2xl" />
           <p></p>
-          <div className="row">
-            <h5 className="card-title">CREATE NEW TASK</h5>
-          </div>
           <div className="card-body">
-
+            <div className="row">
+              <h5 className="card-title">CREATE NEW TASK</h5>
+            </div>
             <form id="form" className="row" onSubmit={sendTask}>
               <label htmlFor="title"><b>Donation Title:</b></label>
               <input type="text" onChange={(e) => setFormValue({ ...formValue, title: e.target.value })} placeholder="Give a name for your donation." name="title" required />
@@ -108,8 +127,8 @@ export default function Donor_UI() {
           </div>
         </div> {/*END FIRST CARD*/}
         <div className="col card upcoming-trips mt-3">
-          <Donor_Timeline></Donor_Timeline>
 
+          <Donor_Timeline></Donor_Timeline>
         </div>
 
       </div>

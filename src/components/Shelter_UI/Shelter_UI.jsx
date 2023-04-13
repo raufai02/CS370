@@ -1,42 +1,66 @@
+import { useState, useEffect } from 'react';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import 'firebase/compat/analytics';
 import SHeader from '../Shelter_Header/Shelter_Header.jsx';
 import './Shelter_UI.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faClock } from '@fortawesome/free-solid-svg-icons';
 
 export default function Shelter_UI() {
-  function togglelabel(e) {
-    var toggle = document.getElementById("flexSwitchCheckChecked").value;
-    var open = document.getElementById("open");
-    var close = document.getElementById("close");
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const [status, setStatus] = useState('');
 
-    if (open.classList.contains("act") == true) {
-      close.classList.add("act");
-      open.classList.remove("act");
+  useEffect(() => {
+    const userRef = auth.currentUser && db.collection('users').doc(auth.currentUser.uid);
+  
+    if (userRef) {
+      userRef.get().then((doc) => {
+        if (doc.exists) {
+          const newStatus = doc.data().status || '';
+          setStatus(newStatus);
+        } else {
+          console.log('No such document!');
+        }
+      });
     }
-    else {
-      open.classList.add("act");
-      close.classList.remove("act");
-    }
+  }, [auth.currentUser]);
 
-    return;
-  }
+  const handleToggle = () => {
+    const userRef = db.collection('users').doc(auth.currentUser.uid);
 
-  function load() {
-    document.getElementById("flexSwitchCheckChecked").addEventListener("change", togglelabel, false);
-  }
-
-  document.addEventListener("DOMContentLoaded", load, false);
+    const newStatus = status === 'open' ? 'closed' : 'open';
+    userRef.update({ status: newStatus }).then(() => {
+      setStatus(newStatus);
+    });
+  };
 
   return (
     <body>
       <SHeader></SHeader>
       <section className="push"></section>
-      <div className="row shelter-cards"> {/* CARDS */}
-        <div className="col card next-trips mt-3 mx-4"> {/* SECOND CARD */}
+
+      <div className="row">
+        <div className="col">
+          <div className="d-flex justify-content-center my-3">
+            <label className="switch">
+              <input type="checkbox" checked={status === 'open'} onChange={handleToggle} />
+              <span className="slider round"></span>
+            </label>
+            <span className="toggle-text">{status === 'open' ? 'Accepting Tasks' : 'Closed'}</span>
+            
+          </div>
+        </div>
+      </div>
+
+      <div className="row shelter-cards">
+        <div className="col card next-trips mt-3 mx-4">
           <FontAwesomeIcon icon={faClock} color="black" size="2xl" />
           <div className="card-body">
             <h5 className="card-title">UPCOMING DELIVERIES</h5>
-            <div className="row py-3 border-bottom"> {/* ELEMENT 1 */}
+            <div className="row py-3 border-bottom">
               <div className="col">
                 <div className="card-title my-0 mb-2 h6">Friday, March 17th</div>
                 <p className="small m-0">Time: 2:30 pm</p>
@@ -48,21 +72,65 @@ export default function Shelter_UI() {
                 <button className="startchat"><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
               </div>
             </div>
-            <div className="row py-3 border-bottom"> {/* ELEMENT 2 */}
-              <div className="col">
-                <div className="card-title my-0 mb-2 h6">Saturday, March 18th</div>
-                <p className="small m-0">Time: 2:30 pm</p>
+          </div>
+        </div>
+      </div>
+
+    </body>
+  )
+}
+
+
+
+/* import SHeader from '../Shelter_Header/Shelter_Header.jsx';
+import './Shelter_UI.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComment, faClock } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import 'firebase/compat/analytics';
+
+
+export default function Shelter_UI() {
+
+  const [status, setStatus] = useState('open');
+
+  const updateStatus = () => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        const db = firebase.firestore();
+        db.collection('users').doc(user.uid).update({ status: status })
+          .then(() => {
+            console.log('Status updated successfully!');
+          })
+          .catch((error) => {
+            console.error('Error updating status: ', error);
+          });
+      } else {
+        console.log('User is not authenticated!');
+      }
+    });
+  }
+
+  return (
+    <body>
+      <SHeader></SHeader>
+      <section className="push"></section>
+      <div className="col">
+                <button onClick={() => setStatus(status === 'open' ? 'closed' : 'open')}>{status === 'open' ? 'Close' : 'Open'}</button>
               </div>
+
+
+      <div className="row shelter-cards"> 
+        <div className="col card next-trips mt-3 mx-4"> 
+          <FontAwesomeIcon icon={faClock} color="black" size="2xl" />
+          <div className="card-body">
+            <h5 className="card-title">UPCOMING DELIVERIES</h5>
+            <div className="row py-3 border-bottom"> 
               <div className="col">
-                <button><u>See details</u></button>
-              </div>
-              <div className="col">
-                <button className="startchat"><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
-              </div>
-            </div>
-            <div className="row py-3 border-bottom"> {/* ELEMENT 3 */}
-              <div className="col">
-                <div className="card-title my-0 mb-2 h6">Sunday, March 19h</div>
+                <div className="card-title my-0 mb-2 h6">Friday, March 17th</div>
                 <p className="small m-0">Time: 2:30 pm</p>
               </div>
               <div className="col">
@@ -80,3 +148,4 @@ export default function Shelter_UI() {
   )
 
 }
+*/

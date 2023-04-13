@@ -1,4 +1,5 @@
 import './Donor_UI.css';
+import Delete_Task from './Delete_Task.jsx'
 import { db } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCol } from "react-bootstrap/Col";
@@ -44,19 +45,13 @@ function StatusComponent(props) {
 
 function Tasks(props) {
     const { task } = props;
-    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability } = task;
+    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
 
     const [showModal, setShowModal] = useState(false);
 
-    const [taskStatus, setTaskStatus] = useState(status);
 
-    const handleAcceptClick = () => {
-        setTaskStatus('in-progress');
-        setShowModal(false);
-    };
 
     const handleRejectClick = () => {
-        setTaskStatus('available');
         setShowModal(false);
     };
 
@@ -85,22 +80,23 @@ function Tasks(props) {
 
     return (
         <>
-
+            <h5 sclassName="medium m-0">{title}</h5>
             <div className="row py-3 border-bottom">
                 <div className="col">
-                    <p className="small m-0">Available by: {task.availability}</p>
+                    <p style={{paddingTop:15}} className="small m-0">Available by: {availability}</p>
                 </div>
                 <div className="col">
-                    <button>Status: {task.status}</button>
+                    <button>Status: {status}</button>
                 </div>
                 <div className="col">
                     <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
                 </div>
-                <div className='col'>
-                    <p className="small m-0">Title: {task.title}</p>
-                </div>
+                
                 <div className="col">
                     <button onClick={() => setShowModal(true)}>Details:</button>
+                </div>
+                <div className="col">
+                    <Delete_Task path={ref} />
                 </div>
             </div>
             <Modal
@@ -113,7 +109,7 @@ function Tasks(props) {
                     <Modal.Title>Description</Modal.Title>
                 </Modal.Header>
                 <Modal.Footer>
-                    <span className="taskDescription">{task.description}</span>
+                    <span className="taskDescription">{description}</span>
                     <Button variant="secondary" onClick={handleRejectClick}>
                         Close
                     </Button>
@@ -123,7 +119,7 @@ function Tasks(props) {
     );
 }
 
-export default function Timeline() {
+export default function Donor_Timeline() {
     const dummy = useRef();
     const q = query(collection(db, "tasks"), where("status", "==", "available"), orderBy("createdAt"),
         limit(25));
@@ -134,11 +130,7 @@ export default function Timeline() {
         console.error(error.message);
     }
 
-    const [taskStatus, setTaskStatus] = useState('available');
-
-    function changeTaskStatus() { // handle clicking 'accept'!!!
-        setTaskStatus('in-progress');
-    }
+  
 
 
     const [tasks, setTasks] = useState([]);
@@ -149,7 +141,7 @@ export default function Timeline() {
             if (authObj) {
                 async function fetchTasks() {
                     const taskCollection = collection(firestore, 'tasks');
-                    const que = query(taskCollection, where('uid', '==', auth.currentUser.uid));
+                    const que = query(taskCollection, where('d_uid', '==', auth.currentUser.uid));
                     const snapshot = await getDocs(que);
                     const taskData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
                     setTasks(taskData);
@@ -165,8 +157,9 @@ export default function Timeline() {
         <>
             <FontAwesomeIcon icon={faPlusCircle} size="2xl" />
             <p></p>
+            <h5 className="card-title">YOUR POSTED TASKS</h5>
             <div className="card-body">
-                <h5 className="card-title">YOUR POSTED TASKS</h5>
+                
                 {tasks ? tasks && tasks.map(task => <Tasks key={task.id} task={task} />) : 'Loading...'}
                 <span ref={dummy}></span>
             </div>

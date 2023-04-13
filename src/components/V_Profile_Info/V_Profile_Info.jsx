@@ -57,7 +57,7 @@ export default function V_Profile_Info() {
                                                 </div>
                                                 <div className="col-6 mb-3">
                                                     <h6>Phone Number</h6>
-                                                    <p className="text-muted">123 456 789</p>
+                                                    <p>{phoneNum}</p>
                                                 </div>
                                             </div>
                                             <h6>Past Trips</h6>

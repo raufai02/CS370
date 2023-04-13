@@ -82,6 +82,7 @@ export default function Sign_In() {
 
 
     return (
+        
         <body>
             <Header num={3} />
             <section id="section2">
@@ -104,7 +105,7 @@ export default function Sign_In() {
                 <div className="container">
 
                     <span className="psw">FORGOT <a className="forgotpass" href="#">PASSWORD?</a></span>
-                    <span className="signup">NOT A MEMBER? SIGN UP <Link to='/onboarding'>HERE</Link> </span>
+                    <span className="signup">NOT A <Link to='/onboarding'>MEMBER?</Link> </span>
                 </div>
             </section>
         </body>

@@ -42,7 +42,7 @@ export default function Donor_Header(props) {
                             <Link to='/donorinfo'>Profile</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/donorui'>History</Link>
+                            <Link to='/donorhistory'>History</Link>
                         </li>
                         <li className="nav-item">
                             <Link to='/' onClick={userSignOut}>Sign Out</Link>

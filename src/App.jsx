@@ -12,6 +12,7 @@ import Shelter_Sign_Up from './components/Shelter_Sign_Up/Shelter_Sign_Up.jsx';
 import Donor_UI from './components/Donor_UI/Donor_UI.jsx';
 import Donor_Info from './components/Donor_Info/Donor_Info.jsx';
 import Donor_Reviews from './components/Donor_Reviews/Donor_Reviews.jsx';
+import Donor_History from "./components/Donor_History/Donor_History.jsx";
 import Shelter_UI from './components/Shelter_UI/Shelter_UI.jsx';
 import Shelter_Info from './components/Shelter_Info/Shelter_Info.jsx';
 import Shelter_Reviews from './components/Shelter_Reviews/Shelter_Reviews.jsx';
@@ -20,7 +21,7 @@ import React from "react";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin></script>
+import 'bootstrap/dist/js/bootstrap';
 
 
 
@@ -42,6 +43,7 @@ function App() {
         <Route path='/donorui' element={<Donor_UI />} />
         <Route path='/donorinfo' element={<Donor_Info />} />
         <Route path='/donorreviews' element={<Donor_Reviews />} />
+        <Route path='/donorhistory' element={<Donor_History />} />
         <Route path='/shelui' element={<Shelter_UI />} />
         <Route path='/shelinfo' element={<Shelter_Info />} />
         <Route path='/shelreviews' element={<Shelter_Reviews />} />

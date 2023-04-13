@@ -1,6 +1,6 @@
 /* ----------------------------------- RESTAURANT DASHBOARD ---------------------------------------------- */
-.push{
-    padding-bottom:8%;
+.pushit{
+    padding-bottom:4%;
   }
 
 .restaurant-cards{
@@ -27,21 +27,14 @@
     color: black;
   }
   
-  
-  .restaurant-cards .create-task .button{
-    margin-top: 10%;
-    margin-left: 20%;
-    margin-right: 20%;
-  }
-  
   .restaurant-cards .create-task button{
     background-color: #284026;
     border: none;
     color: white;
     font-weight:600;
     font-size: 2.5vh;;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    padding-top: 4%;
+    padding-bottom: 4%;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -65,17 +58,6 @@
     
   }
   
-  
-  .restaurant-cards .upcoming-trips .startchat i{
-    font-size: 3vh;
-    padding: 1%;
-    color: black;
-    border: none;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1px;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-  }
   
   .restaurant-cards .upcoming-trips .startchat{
     text-decoration: none;

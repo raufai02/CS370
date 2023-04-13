@@ -58,7 +58,7 @@ export default function Shelter_Info() {
                                                 </div>
                                                 <div className="col-6 mb-3">
                                                     <h6>Phone Number</h6>
-                                                    <p className="text-muted">123 456 789</p>
+                                                    <p>{phoneNum}</p>
                                                 </div>
                                             </div>
                                             <h6>Past Trips</h6>
@@ -67,10 +67,6 @@ export default function Shelter_Info() {
                                                 <div className="col-6 mb-3">
                                                     <h6>Meals Delivered</h6>
                                                     <p className="text-muted">34</p>
-                                                </div>
-                                                <div className="col-6 mb-3">
-                                                    <h6>Miles traveled</h6>
-                                                    <p className="text-muted">150</p>
                                                 </div>
                                             </div>
                                         </div>
