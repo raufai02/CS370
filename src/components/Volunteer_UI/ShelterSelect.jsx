@@ -4,99 +4,106 @@ import {collection, doc, limit, orderBy, query, updateDoc, where} from "firebase
 import {auth, db} from "../../firebase";
 import React, {useEffect, useState} from "react";
 import {useCollectionData} from "react-firebase-hooks/firestore";
-/*
-const handleAcceptClick = async () => {
-        try{
-            const docRef = doc(db, "tasks", ref);
-            const data = { status: "in-progress"};
-            await updateDoc(docRef, data);
-        }catch(error){
-            console.error('Error updating task status: ', error)
-        }
-        setShowModal(false);
-    };
- */
+import {wait} from "@testing-library/user-event/dist/utils";
+
+
+
+
 
 const ShelterOption = props => {
+    const { shelter } = props;
+    const { address, name, ref } = shelter;
+
+    console.log(`name: ${name}, ref: ${ref}`);
 
     return(
-        <option value=props.ref>{`${props.name}, ${props.address}`}</option>
+        <option value={ref}>{`${name}, ${address}, ${ref}`}</option>
     )
 }
 
 const ShelterSelect = props => {
-    const [formValue, setFormValue] = useState({ shelter: ''});
-
-    const q = query(collection(db, "users"), where("role", "==", "shelter"), where("status", "==", "open"),
-        limit(25));
-
-    const [shelters, loading, error] = useCollectionData(q, { idField: 'id' });
-
-    const handleAccept = async (e) => {
-        try{
-            const docRef = doc(db, "tasks", props.ref);
-            const data = {
-                status: "in-progress",
-                v_uid: auth.currentUser.uid,
-                s_uid: formValue.shelter
-            };
-            await updateDoc(docRef, data);
-        }catch(error){
-            console.error('Error updating task status: ', error)
-        }
-        props.onClose();
-    }
-
-    const modalStyle = {
-        display: props.show ? 'flex' : 'none',
-        justifyContent: 'center',
-        position: 'fixed',
-        top:100,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        zIndex: 999,
-    };
-
-    if(!props.show){
-        return null;
-    }
-
     const closeOnEscapeKeyDown = (e) =>{
         if((e.charCode || e.keyCode) === 27){
             props.onClose()
         }
     }
-
     useEffect(() => {
+
         document.body.addEventListener('keydown', closeOnEscapeKeyDown)
         return function cleanup(){
             document.body.removeEventListener('keydown', closeOnEscapeKeyDown)
         }
     }, [])
 
+    const [choice, setChoice] = useState(null);
+
+    const q = query(collection(db, "users"), where("role", "==", "shelter"), where("status", "==", "open"),
+        limit(25));
+
+    const [shelters, loading, error] = useCollectionData(q, { idField: 'id' });
+
+    if(!props.show) return null;
+
+
+    async function handleAccept (e) {
+        e.preventDefault();
+        const newTaskRef = doc(db, "tasks", props.taskRef);
+        const data = {
+            status: "in-progress",
+            v_uid: auth.currentUser.uid,
+            s_uid: choice
+        }
+
+        props.onClose();
+
+        await updateDoc(newTaskRef, data)
+            .then(() => {
+                console.log("Updated)")
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+
+    }
+
     return(
-    <div className="modal" onClick={props.onClose}>
-        <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <div className="modal-header">
-                Please Select Which Shelter You Will Drop the Food At
-            </div>
-            <div className="modal-body">
-                <form onSubmit={handleAccept}></form>
-                <label>Open Shelters</label>
-                <select name = "shelter" onChange={(e) => setFormValue({ ...formValue, shelter: e.target.value })} id="shelter">
-                    {shelters ? shelters && shelters.map(shelter => <ShelterOption key={shelter.id} shelter={shelter} />) : 'Loading...'}
+        <Modal
+            show={props.show}
+            onHide={props.onClose}
+            backdrop="static"
+            keyboard={false}
+            onClick={e => {
+                e.stopPropagation();
+            }}
+        >
+            <Modal.Header>
+                <Modal.Title>Where to Deliver?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <select name = "shelter" onChange={(e) => setChoice(e.target.value)} id="shelter" defaultValue={"default"} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} required={true}>
+                    <option value ="default" disabled>Please Pick a Shelter</option>
+                    {shelters && shelters.map(shelter => <ShelterOption key={shelter.id} shelter={shelter} />)}
                 </select>
-            </div>
-            <div className="modal-footer">
-                <Button variant="secondary" onClick={props.onClose}>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={choice ? handleAccept : null} variant="primary" type = "submit" style={{backgroundColor: '#87B692', borderColor: '#87B692'}}>
+                    Accept
+                </Button>
+                <Button variant="secondary" onClick={props.onClose} style={{backgroundColor: 'crimson', borderColor: 'crimson'}}>
                     Cancel
                 </Button>
-            </div>
-        </div>
-    </div>
+            </Modal.Footer>
+        </Modal>
     )
 }
 
 export default ShelterSelect
+
+
+/*
+
+
+
+
+ */
