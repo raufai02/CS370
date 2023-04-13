@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
+import '../Header/Header.css';
 
 class Header extends Component{
 
@@ -15,13 +15,13 @@ class Header extends Component{
             <div id = "navbar" className = {this.state.clicked ? "#navbar active": "#navbar"}>
                 <ul>
                     <li className="nav-item">
-                        <Link className="active" to= "/">Home</Link>
+                        <Link className = "active" to='/volunteerui'>Home Page</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to='/about'>About</Link>
+                        <Link to='/vprofinfo'>Profile Information</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to='/signin'>Sign In</Link>
+                        <Link to='/vreviews'>Leave a Review</Link>
                     </li>
                 </ul>
             </div>

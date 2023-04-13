@@ -5,9 +5,6 @@ import {useCol} from "react-bootstrap/Col";
 import {useEffect, useRef, useState} from "react";
 import { collection, query, where, orderBy, limit, getDocs } from "firebase/firestore";
 
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faMapLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -24,7 +21,7 @@ function StatusComponent(props) {
 
 function Tasks(props){
     const { task } = props;
-    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability } = task;
+    const { address, createdAt, description, status, uid, photoURL } = task;
 
     const [showModal, setShowModal] = useState(false);
 
@@ -54,7 +51,7 @@ function Tasks(props){
 
     const minsAgo = (oldDate) => {
         const currentDate = new Date();
-        const diff= (currentDate-oldDate)/60000;
+        const diff= currentDate-oldDate;
         let result = 0;
         if (diff>60){
             result += Math.floor(diff/60);
@@ -66,19 +63,16 @@ function Tasks(props){
     return (
         <>
 
-            <div className="row py-3 border-bottom">
-                            <div className="col">
-                                <div className="card-title my-0 mb-2 h6">{`Posted: ${minsAgo(createdAt)}`}</div>
-                                <div className="card-title my-0 mb-2 h6">{`Available at: ${availability}`}</div>
-                                <div className="card-title my-0 mb-2 h6">{`Title: ${title}`}</div>
-                                <div className="card-title my-0 mb-2 h6">{`Quantity: ${quantity}`}</div>
-                            </div>
-                            <div className="col buttons">
-                                <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="white" size="2xl" /></a></button>
-                                <button className="viewmap"><FontAwesomeIcon icon={faMapLocationDot} size="2xl" /></button>
-                                <button className="accept" onClick={() => setShowModal(true)}><FontAwesomeIcon icon={faCheck} color="white" size="2xl" /></button>
-                            </div>
-                        </div>
+            <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+            <div className="task-container">
+                <div className="col">
+                    <div className="card-title my-0 mb-2 h6">{`Posted ${minsAgo(createdAt)}`}</div>
+                    <p className="small m-0">{`Description: ${description}`}</p>
+                </div>
+                <div className="col buttons">
+                    <button className="accept" onClick={() => setShowModal(true)}>Accept?<i className="bi bi-check-lg" /></button>
+                </div>
+            </div>
             <Modal
                 show={showModal}
                 onHide={handleRejectClick}

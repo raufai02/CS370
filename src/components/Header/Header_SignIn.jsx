@@ -15,13 +15,13 @@ class Header extends Component{
             <div id = "navbar" className = {this.state.clicked ? "#navbar active": "#navbar"}>
                 <ul>
                     <li className="nav-item">
-                        <Link className="active" to= "/">Home</Link>
+                        <Link to= "/">Home</Link>
                     </li>
                     <li className="nav-item">
                         <Link to='/about'>About</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to='/signin'>Sign In</Link>
+                        <Link className="active" to='/signin'>Sign In</Link>
                     </li>
                 </ul>
             </div>
@@ -29,6 +29,7 @@ class Header extends Component{
                 <i id = "bar" className={this.state.clicked ? 'fas fa-times': 'fas fa-bars'}></i>
             </div>
         </nav>
+
         )
     }
 }

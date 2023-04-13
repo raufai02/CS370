@@ -31,9 +31,7 @@ export default function Volunteer_Sign_Up(){
                     name: name,
                     phoneNum: phoneNum,
                     address: address,
-                    license: license,
-                    ref: userCredential.user.uid,
-                    status: "closed"
+                    license: license
                 });
             }).then((userCredential) => {
         })
@@ -49,8 +47,8 @@ export default function Volunteer_Sign_Up(){
 
     const handleSubmit = event => {
 
-    // Redirect to shelter ui
-    navigate('/shelui');
+    // Redirect to volunteer ui
+    navigate('/volunteerui');
     };
 
 

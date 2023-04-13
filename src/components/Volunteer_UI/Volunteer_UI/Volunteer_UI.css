@@ -20,6 +20,7 @@
 }
 
 .volunteer-cards{
+  margin-top: 5%;
   margin-bottom: 5%;
 }
 
@@ -27,15 +28,9 @@
   padding: 2%;
 }
 
-
-.card-header{
+.volunteer-cards i{
   text-align: center;
   font-size: 8vh;
-  background-color: white;
-}
-
-.fa-comment-dots{
-  color: white;
 }
 
 .volunteer-cards .buttons i{
@@ -88,3 +83,18 @@
   text-decoration: none;
   color: black;
 }
+
+.accept{
+  width: 30%;
+}
+
+.card-body{
+  overflow-y: scroll;
+  height: 500px;
+}
+
+.task-container{
+  border: 2px solid black;
+  border-radius: 25px;
+}
+

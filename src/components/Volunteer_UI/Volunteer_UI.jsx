@@ -1,15 +1,9 @@
-import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
+import VHeader from '../Volunteer_Header/Volunteer_Header_Home.jsx';
 import './Volunteer_UI.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClipboardCheck, faClipboardList } from '@fortawesome/free-solid-svg-icons';
-import Timeline from './Timeline.jsx';
-import Active_Timeline from './Active_Timeline.jsx';
+import { Link } from 'react-router-dom';
+//<FilePerson className="centerFile"/>
 
 export default function Volunteer_UI(){
-
-
-
-
     return(
         <body>
             <VHeader num={4}/>
@@ -18,21 +12,49 @@ export default function Volunteer_UI(){
 
             <div className="row volunteer-cards"> {/* CARDS */}
                 {/* SECOND CARD */}
-                <div className="col card create-task mt-3 mx-4">
-                    <FontAwesomeIcon icon={faClipboardList} size="2xl" />
-                    <p></p>
-                    
-                    <h5 className="card-title">AVAILABLE TRIPS</h5>
+                <div className="col card next-trips mt-3 mx-4">
+                    <i className="bi bi-clipboard-check" />
                     <div className="card-body">
-                        <Timeline></Timeline>
-                    </div>
-                </div>
-                <div className="col card create-task mt-3 mx-4">
-                <FontAwesomeIcon icon={faClipboardCheck} size="2xl" />
-                <p></p>
-                <h5 className="card-title">ACTIVE TRIPS</h5>
-                    <div className="card-body">
-                        <Active_Timeline></Active_Timeline>
+                        <div className = "card-header">
+                            <i id = "profileicon"className="fa-solid fa-user"/>
+                            <h5 className="card-title">PENDING TRIPS</h5>
+                        </div>
+                        <div className="row py-3 border-bottom">
+                            <div className="col">
+                                <div className="card-title my-0 mb-2 h6">Friday, March 17th</div>
+                                <p className="small m-0">Time: 2:30 pm</p>
+                            </div>
+                            <div className="col buttons">
+                                <button><a className="startchat" href="chat.html"><i className="fas fa-comment-dots"/></a></button>
+                                <button className="viewmap"><i className="fas fa-location-pin" /></button>
+                                <button className="accept"><i className="fas fa-check" /></button>
+                                <button className="reject"><i className="fas fa-times" /></button>
+                            </div>
+                        </div>
+                        <div className="row py-3 border-bottom">
+                            <div className="col">
+                                <div className="card-title my-0 mb-2 h6">Saturday, March 18th</div>
+                                <p className="small m-0">Time: 2:30 pm</p>
+                            </div>
+                               <div className="col buttons">
+                                <button><a className="startchat" href="chat.html"><i className="fas fa-comment-dots"/></a></button>
+                                <button className="viewmap"><i className="fas fa-location-pin" /></button>
+                                <button className="accept"><i className="fas fa-check" /></button>
+                                <button className="reject"><i className="fas fa-times" /></button>
+                            </div>
+                        </div>
+                        <div className="row py-3 border-bottom">
+                            <div className="col">
+                                <div className="card-title my-0 mb-2 h6">Sunday, March 19h</div>
+                                <p className="small m-0">Time: 2:30 pm</p>
+                            </div>
+                            <div className="col buttons">
+                                <button><a className="startchat" href="chat.html"><i className="fas fa-comment-dots"/></a></button>
+                                <button className="viewmap"><i className="fas fa-location-pin" /></button>
+                                <button className="accept"><i className="fas fa-check" /></button>
+                                <button className="reject"><i className="fas fa-times" /></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,3 +70,5 @@ export default function Volunteer_UI(){
                    
     )
 }
+
+

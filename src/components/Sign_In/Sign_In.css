@@ -1,9 +1,13 @@
 form #signin {border: 3px solid whitesmoke;}
+form{
+    display: flex;
+    flex-direction: column;
+}
 
 .here, .forgotpass{color: blue;}
 .here:hover, .forgotpass:hover{color: #284026}
 
-input[type=text], input[type=password], input[type=email] {
+input[type=email], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -21,7 +25,6 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
-    border-radius: 25px;
 }
 
 button:hover {
@@ -30,7 +33,6 @@ button:hover {
 
 .imgcontainer {
     text-align: center;
-    margin: 24px 0 12px 0;
 }
 
 img.avatar {
@@ -43,9 +45,23 @@ img.avatar {
 }
 
 span.psw {
-    display:block;
     float: right;
-    padding-top: 0px;
+    padding-top: 16px;
+}
+
+.signup-container{
+    margin-left: 3%;
+}
+
+
+.signup-container a{
+    text-decoration: none;
+    color: #284026;
+}
+
+.signup-container a:hover{
+    text-decoration: none;
+    color: #587F97;
 }
 
 

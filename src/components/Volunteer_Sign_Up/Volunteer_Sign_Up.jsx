@@ -29,8 +29,7 @@ export default function Volunteer_Sign_Up(){
                     role: "volunteer",
                     name: name,
                     phoneNum: phoneNum,
-                    address: address,
-                    ref: userCredential.user.uid
+                    address: address
                 });
             }).then((userCredential) => {
         })

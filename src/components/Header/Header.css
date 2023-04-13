@@ -1,49 +1,103 @@
-.navbar{
-    border-top: 2px solid black;
-    border-bottom: 2px solid ;
-    
-    justify-content: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+nav{
+  display: flex;
+  align-items: center;
+  background: #B3C2B4;
+  padding: 0.5%;
+}
+
+.navbar-brand a{
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+#navbar{    
+  position: relative;
+  diplay: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2%;
+}
+
+#navbar li{
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+  display: inline;
+}
+
+#navbar li a{
+  text-decoration: none;
+  font-size: 1.3rem;
+  transition: 0.3s ease-in-out;
+  color: black;
+}
+
+#navbar li a:hover,
+#navbar li a.active{
+  color: #737C74;
+}
+
+.navbar-brand a:hover{
+  color: black;
+}
+
+#navbar li a:hover::after,
+#navbar li a.active::after{
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: #737C74;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+
+#mobile{
+  display: none;
+}
+
+#mobile i{
+  align-items: center;
+}
+
+@media screen and (max-width: 769px){
+
+  nav{
+    justify-content: space-between;
   }
-  
-  .navbar li{
-    font-size: 3.5vh;
-    justify-content: center;
-    padding: 20px;
-    float: left;
-    
-    
-  }
-  
-  .navbar li a{
-    font-size: 3.5vh;
-    justify-content: center;
-    text-align: center;
-    text-decoration: none;
-    color: black;
-    
-  }
-  
-  .navbar-brand a{
-    font-size: 5.5vh;
-    font-weight:600;
-    text-decoration: none;
-    color: black;
-    
-  }
-  
-  .nav-link.disabled{
-    pointer-events: none;
-  }
-  
-  .nav-item{
-    list-style-type: none;
-    display: inline-block;
-    justify-content: center;
+  #navbar{
+    position: fixed;
+    diplay: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    top: 70px;
+    right: -300px;
+    width: 300px;
+    height: 50vh;
+    background: #B3C2B4;
+    padding: 40px 0 0 10px;
+    transition: 0.3s ease-in-out;
+    z-index: 10;
   }
 
+  #navbar.active{
+    right: 0px;
+  }
 
-  
+  #navbar li{
+    margin-bottom: 25px;
+    display: flex;
+  }
+
+  #mobile{
+    display: block;
+  }
+
+  #mobile i{
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

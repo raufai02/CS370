@@ -1,23 +1,23 @@
-import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
+import VHeader from '../Volunteer_Header/Volunteer_Header_Profile.jsx';
 import './V_Profile_Info.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import {FilePerson} from 'react-bootstrap-icons';
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../../firebase";
+import contact from "./contact_image.png"
+import { Link } from 'react-router-dom';
 
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
-export default function V_Profile_Info() {
+export default function V_Profile_Info(){
     const user = auth.currentUser;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [name, setName] = useState('');
 
-    async function userInfo(authUser) {
+    async function userInfo(authUser){
         const docRef = doc(db, "users", authUser.uid);
         const docSnap = await getDoc(docRef);
         setRole(String(docSnap.data().role));
@@ -29,19 +29,18 @@ export default function V_Profile_Info() {
         userInfo(user);
     })
 
-    return (
+    return(
         <body>
-            <VHeader num={5} />
-            <section className="push"></section>
+            <VHeader num={5}/>
             <section className="vh-100 profile-info">
                 <div className="container py-5 h-100">
-                    <div className="row backarrow"><Link to='/volunteerui'><FontAwesomeIcon icon={faArrowCircleLeft} color="grey" size="2xl" /></Link></div>
+                    <div className="row backarrow"><Link to='/volunteerui'><i className="fa-solid fa-arrow-left"></i></Link></div>
                     <div className="row d-flex justify-content-center align-items-center h-100 mt-0">
                         <div className="col col-lg-6 mb-4 mb-lg-0">
                             <div className="card mb-3 profile-card">
                                 <div className="row g-0">
                                     <div className="col-md-4 gradient-custom text-center text-white profile-pic">
-                                        <img src="../MS_images/contact_image.png" className="img-fluid my-5" />
+                                        <img src= {contact} className="img-fluid my-5" />
                                         <p>{name}</p>
                                         <p>{role}</p>
                                         <button type="button" className="btn btn-outline-dark">Edit Profile</button>
@@ -57,7 +56,7 @@ export default function V_Profile_Info() {
                                                 </div>
                                                 <div className="col-6 mb-3">
                                                     <h6>Phone Number</h6>
-                                                    <p>{phoneNum}</p>
+                                                    <p className="text-muted">123 456 789</p>
                                                 </div>
                                             </div>
                                             <h6>Past Trips</h6>
