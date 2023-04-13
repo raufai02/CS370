@@ -1,8 +1,9 @@
-import VHeader from '../Volunteer_Header/Volunteer_Header.jsx';
-import './V_Profile_Info.css';
+import SHeader from '../Shelter_Header/Shelter_Header.jsx';
+import './Shelter_Info.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
+
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -10,7 +11,8 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
-export default function V_Profile_Info() {
+
+export default function Shelter_Info() {
     const user = auth.currentUser;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
@@ -28,14 +30,13 @@ export default function V_Profile_Info() {
     useEffect(() => {
         userInfo(user);
     })
-
     return (
         <body>
-            <VHeader num={5} />
-            <section className="push"></section>
+            <SHeader></SHeader>
             <section className="vh-100 profile-info">
+                <section className="push"></section>
                 <div className="container py-5 h-100">
-                    <div className="row backarrow"><Link to='/volunteerui'><FontAwesomeIcon icon={faArrowCircleLeft} color="grey" size="2xl" /></Link></div>
+                    <div className="row backarrow"><Link to='/shelui'><FontAwesomeIcon icon={faArrowCircleLeft} color="grey" size="2xl" /></Link></div>
                     <div className="row d-flex justify-content-center align-items-center h-100 mt-0">
                         <div className="col col-lg-6 mb-4 mb-lg-0">
                             <div className="card mb-3 profile-card">
@@ -67,10 +68,6 @@ export default function V_Profile_Info() {
                                                     <h6>Meals Delivered</h6>
                                                     <p className="text-muted">34</p>
                                                 </div>
-                                                <div className="col-6 mb-3">
-                                                    <h6>Miles traveled</h6>
-                                                    <p className="text-muted">150</p>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -80,6 +77,7 @@ export default function V_Profile_Info() {
                     </div>
                 </div>
             </section>
+
         </body>
     )
 }

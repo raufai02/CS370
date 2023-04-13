@@ -5,7 +5,7 @@
 *{font-family: Constantia; box-sizing: border-box;}
 body{
   color: black; background-color: whitesmoke; padding: 0;} /*THE PADDING OMG */
-a{color: white;text-decoration: none;}
+a{color: blue;text-decoration: none;}
 .section-header{font-size: 5vh; text-align: center; background-color: #A2B8A0; padding: 1%; width: 100%;}
 h2{font-size: 5vh;}
 p{font-size: 3.5vh;}
@@ -40,51 +40,3 @@ p{font-size: 3.5vh;}
 
 /* ----------------------------------- PROFILE INFORMATION ---------------------------------------------- */
 
-.profile-info{
-  background-color: #f4f5f7;
-}
-
-.profile-info .backarrow i{
-  padding: 1%;
-  background-color: #D5D6DA;
-  border-top-left-radius: 1rem; 
-  border-bottom-left-radius: 1rem;
-  border-top-right-radius: 1rem; 
-  border-bottom-right-radius: 1rem;
-  align-self: left;
-}
-
-
-.profile-info .backarrow i:hover{
-  border: 1px solid #888;
-  background-color: #ddd;
-}
-
-.profile-info .backarrow a{
-  text-decoration: none;
-  color: black;
-  border: none;
-  background-color: none;
-  background: none;
-  display: flex;
-  justify-content: left;
-}
-
-
-.profile-card{
-  border-radius: .5rem;
-}
-
-.profile-pic{
-  border-top-left-radius: .5rem; 
-  border-bottom-left-radius: .5rem;
-}
-
-.profile-pic img{
-  width: 80px;
-}
-
-.profile-info p{
-  font-size: 2.5vh;
-  color: grey;
-}
