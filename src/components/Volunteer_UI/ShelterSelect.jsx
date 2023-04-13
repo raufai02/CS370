@@ -37,8 +37,8 @@ const ShelterSelect = props => {
             const docRef = doc(db, "tasks", props.ref);
             const data = {
                 status: "in-progress",
-                driver: auth.currentUser.uid,
-                shelter: formValue.shelter
+                v_uid: auth.currentUser.uid,
+                s_uid: formValue.shelter
             };
             await updateDoc(docRef, data);
         }catch(error){

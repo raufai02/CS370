@@ -54,7 +54,7 @@ export default function Donor_UI () {
           description: formValue.description,
           availability: formValue.availability,
           createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          uid: auth.currentUser.uid,
+          d_uid: auth.currentUser.uid,
           status:'available',
           ref: newTaskRef.id
       });
