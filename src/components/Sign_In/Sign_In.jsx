@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence} from "firebase/auth";
 import { db } from "../../firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
@@ -18,13 +18,21 @@ export default function Sign_In() {
 
     const signIn = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                console.log(userCredential);
+
+        setPersistence(auth, browserSessionPersistence)
+            .then(() => {
+                // Existing and future Auth states are now persisted in the current
+                // session only. Closing the window would clear any existing state even
+                // if a user forgets to sign out.
+                // ...
+                // New sign-in will be persisted with session persistence.
+                signInWithEmailAndPassword(auth, email, password);
                 handleSubmit();
             })
             .catch((error) => {
-                console.log(error);
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
             });
     }
 
