@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faMapLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import ShelterSelect from "./ShelterSelect";
 
 
 function StatusComponent(props) {
@@ -27,20 +28,13 @@ function Tasks(props){
     const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
 
     const [showModal, setShowModal] = useState(false);
+    const [showShelterModal, setShowShelterModal] = useState(false);
 
     const [taskStatus, setTaskStatus] = useState(status);
 
     const handleAcceptClick = async () => {
-        try{
-            const docRef = doc(db, "tasks", ref);
-            const data = { status: "in-progress"};
-            await updateDoc(docRef, data);
-        }catch(error){
-            console.error('Error updating task status: ', error)
-        }
         setShowModal(false);
-
-
+        setShowShelterModal(true);
     };
     const handleRejectClick = () => {
         setTaskStatus('available');
@@ -104,6 +98,7 @@ function Tasks(props){
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <ShelterSelect props={{showShelterModal, ref}}></ShelterSelect>
         </>
     );
 }

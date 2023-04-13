@@ -31,7 +31,8 @@ export default function Volunteer_Sign_Up(){
                     name: name,
                     phoneNum: phoneNum,
                     address: address,
-                    license: license
+                    license: license,
+                    ref: userCredential.user.uid
                 });
             }).then((userCredential) => {
         })

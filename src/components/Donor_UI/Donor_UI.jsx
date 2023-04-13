@@ -46,7 +46,6 @@ export default function Donor_UI () {
   
 
     const sendTask = async (e) => {
-      navigate("/donorui");
       e.preventDefault();
       const newTaskRef = doc(tasksRef);
       await setDoc(newTaskRef, {
@@ -60,6 +59,7 @@ export default function Donor_UI () {
           ref: newTaskRef.id
       });
       setFormValue({ title: '', quantity: '', description: '', availability: '' });
+      window.location.reload();
   }
 
 
