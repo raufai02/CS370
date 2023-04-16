@@ -1,5 +1,5 @@
 import './Volunteer_UI.css';
-import { db } from "../../firebase";
+import { db, auth } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCol } from "react-bootstrap/Col";
 import { useEffect, useRef, useState } from "react";
@@ -13,6 +13,7 @@ import { faComment, faMapLocationDot, faCheck } from '@fortawesome/free-solid-sv
 function Tasks(props) {
     const { task } = props;
     const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
+
 
     
 
@@ -47,8 +48,21 @@ function Tasks(props) {
 }
 
 export default function Active_Timeline() {
+    const[curr_uid, setCurr_UID] = useState('')
+
+    useEffect(() => {
+        const unsub = auth.onAuthStateChanged((authObj) => {
+            unsub();
+            if (authObj) {
+                setCurr_UID(authObj.uid);
+            } else {
+                // not logged in
+            }
+        });
+    }, []);
+
     const dummy = useRef();
-    const q = query(collection(db, "tasks"), where("status", "==", "in-progress"), orderBy("createdAt"),
+    const q = query(collection(db, "tasks"), where("status", "==", "in-progress"), where("v_uid", "==", curr_uid), orderBy("createdAt"),
         limit(25));
 
     const [tasks, loading, error] = useCollectionData(q, { idField: 'id' });

@@ -11,23 +11,41 @@ import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
 export default function Donor_Info() {
-    const user = auth.currentUser;
+    const[curr_uid, setCurr_UID] = useState('')
+    const[curr_email, setCurr_Email] = useState('')
+
+    useEffect(() => {
+        const unsub = auth.onAuthStateChanged((authObj) => {
+            unsub();
+            if (authObj) {
+                setCurr_UID(authObj.uid);
+                setCurr_Email(authObj.email);
+            } else {
+                // not logged in
+            }
+        });
+    }, []);
+
+
+    const user = curr_uid;
     const [authUser, setAuthUser] = useState(null);
     const [role, setRole] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [name, setName] = useState('');
 
-    async function userInfo(authUser) {
-        const docRef = doc(db, "users", authUser.uid);
-        const docSnap = await getDoc(docRef);
-        setRole(String(docSnap.data().role));
-        setPhoneNum(String(docSnap.data().phoneNum));
-        setName(String(docSnap.data().name));
-    }
+    async function userInfo(user) {
+    const docRef = doc(db, "users", user);
+    const docSnap = await getDoc(docRef);
+    setRole(String(docSnap.data().role));
+    setPhoneNum(String(docSnap.data().phoneNum));
+    setName(String(docSnap.data().name));
+}
 
-    useEffect(() => {
+useEffect(() => {
+    if (user) {
         userInfo(user);
-    })
+    }
+}, [user]);
 
     return (
         <body>
@@ -53,7 +71,7 @@ export default function Donor_Info() {
                                             <div className="row pt-1">
                                                 <div className="col-6 mb-3 email">
                                                     <h6>Email</h6>
-                                                    <p>{user.email}</p>
+                                                    <p>{curr_email}</p>
                                                 </div>
                                                 <div className="col-6 mb-3">
                                                     <h6>Phone Number</h6>

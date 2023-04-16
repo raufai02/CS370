@@ -7,9 +7,6 @@ import Active_Timeline from './Active_Timeline.jsx';
 
 export default function Volunteer_UI(){
 
-
-
-
     return(
         <body>
             <VHeader num={4}/>
