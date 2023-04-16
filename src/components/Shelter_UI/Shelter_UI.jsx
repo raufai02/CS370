@@ -7,11 +7,25 @@ import SHeader from '../Shelter_Header/Shelter_Header.jsx';
 import './Shelter_UI.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faClock } from '@fortawesome/free-solid-svg-icons';
+import Shelter_Active_Timeline from './Shelter_Active_Timeline.jsx';
 
 export default function Shelter_UI() {
   const auth = firebase.auth();
   const db = firebase.firestore();
   const [status, setStatus] = useState('');
+
+  const[curr_uid, setCurr_UID] = useState('')
+
+    useEffect(() => {
+        const unsub = auth.onAuthStateChanged((authObj) => {
+            unsub();
+            if (authObj) {
+                setCurr_UID(authObj.uid);
+            } else {
+                // not logged in
+            }
+        });
+    }, []);
 
   useEffect(() => {
     const userRef = auth.currentUser && db.collection('users').doc(auth.currentUser.uid);
@@ -29,7 +43,7 @@ export default function Shelter_UI() {
   }, [auth.currentUser]);
 
   const handleToggle = () => {
-    const userRef = db.collection('users').doc(auth.currentUser.uid);
+    const userRef = db.collection('users').doc(curr_uid);
 
     const newStatus = status === 'open' ? 'closed' : 'open';
     userRef.update({ status: newStatus }).then(() => {
@@ -60,18 +74,8 @@ export default function Shelter_UI() {
           <FontAwesomeIcon icon={faClock} color="black" size="2xl" />
           <div className="card-body">
             <h5 className="card-title">UPCOMING DELIVERIES</h5>
-            <div className="row py-3 border-bottom">
-              <div className="col">
-                <div className="card-title my-0 mb-2 h6">Friday, March 17th</div>
-                <p className="small m-0">Time: 2:30 pm</p>
-              </div>
-              <div className="col">
-                <button><u>See details</u></button>
-              </div>
-              <div className="col">
-                <button className="startchat"><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
-              </div>
-            </div>
+            <Shelter_Active_Timeline></Shelter_Active_Timeline>
+            
           </div>
         </div>
       </div>

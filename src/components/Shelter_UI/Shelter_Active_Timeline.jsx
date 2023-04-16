@@ -1,5 +1,5 @@
-import './Volunteer_UI.css';
-import { db } from "../../firebase";
+import './Shelter_UI';
+import { db, auth } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCol } from "react-bootstrap/Col";
 import { useEffect, useRef, useState } from "react";
@@ -9,12 +9,33 @@ import { collection, query, where, orderBy, limit, getDocs, updateDoc, doc } fro
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faMapLocationDot, faCheck } from '@fortawesome/free-solid-svg-icons';
 
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function Tasks(props) {
     const { task } = props;
     const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
 
     
+
+    const [showModal, setShowModal] = useState(false);
+
+
+
+    const handleRejectClick = () => {
+        setShowModal(false);
+    };
+    const modalStyle = {
+        display: showModal ? 'left' : 'none',
+        justifyContent: 'left',
+        position: 'fixed',
+        top: 100,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 999,
+    };
 
     const minsAgo = (oldDate) => {
         const currentDate = new Date();
@@ -32,22 +53,53 @@ function Tasks(props) {
 
             <div className="row py-3 border-bottom">
                 <div className="col">
-                    <div className="card-title my-0 mb-2 h6">{`Time: ${availability}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Title: ${title}`}</div>
+                    <div className="card-title my-0 mb-2 h6">{`Time: ${availability}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Quantity: ${quantity}`}</div>
                 </div>
-                <div className="col buttons">
-                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="white" size="2xl" /></a></button>
-                    <button className="viewmap"><FontAwesomeIcon icon={faMapLocationDot} size="2xl" /></button>
+
+                <div className="col">
+                    <button onClick={() => setShowModal(true)}>Details:</button>
                 </div>
             </div>
+            <Modal
+                show={showModal}
+                onHide={handleRejectClick}
+                backdrop="static"
+                keyboard={false}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Description</Modal.Title>
+                </Modal.Header>
+                <Modal.Footer>
+                    <span className="taskDescription">{description}</span>
+                    <Button variant="secondary" onClick={handleRejectClick}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            
         </>
     );
 }
 
 export default function Shelter_Active_Timeline() {
+    const[curr_uid, setCurr_UID] = useState('')
+
+    useEffect(() => {
+        const unsub = auth.onAuthStateChanged((authObj) => {
+            unsub();
+            if (authObj) {
+                setCurr_UID(authObj.uid);
+            } else {
+                // not logged in
+            }
+        });
+    }, []);
+
+
     const dummy = useRef();
-    const q = query(collection(db, "tasks"), where("status", "==", "in-progress"), orderBy("createdAt"),
+    const q = query(collection(db, "tasks"), where("status", "==", "in-progress"), where("s_uid", "==", curr_uid), orderBy("createdAt"),
         limit(25));
 
     const [tasks, loading, error] = useCollectionData(q, { idField: 'id' });

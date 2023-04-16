@@ -16,11 +16,9 @@
     color: white;
   }
 
-  .home{
+  #section0{
     background-image: url('volunteer-2.png');
     background-size:cover;
-    
-    margin: 0;
     width:100vw;
-    height:100vh;
+    height:88vh;
   }
