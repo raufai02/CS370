@@ -4,6 +4,7 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCol } from "react-bootstrap/Col";
 import { useEffect, useRef, useState } from "react";
 import { collection, query, where, orderBy, limit, getDocs, updateDoc, doc } from "firebase/firestore";
+import TaskConfirm from "./TaskConfirm";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +20,7 @@ function Tasks(props) {
     
 
     const [showModal, setShowModal] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
 
 
@@ -64,7 +66,11 @@ function Tasks(props) {
                 <div className="col">
                     <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
                 </div>
+                <div className="col">
+                    <button className="accept" onClick={() => setShowConfirm(true)}><FontAwesomeIcon icon={faCheck} color="black" size="2xl" /></button>
+                </div>
             </div>
+            <TaskConfirm show={showConfirm} onClose={()=>setShowConfirm(false)} taskRef = {ref}></TaskConfirm>
             <Modal
                 show={showModal}
                 onHide={handleRejectClick}
