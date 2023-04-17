@@ -54,7 +54,6 @@ function Tasks(props){
 
 
 /*
-
 <div className="row py-3 border-bottom">
                 <div className="col">
                     <div className="card-title my-0 mb-2 h6">{`Posted: ${minsAgo(createdAt)}`}</div>
@@ -68,7 +67,6 @@ function Tasks(props){
                     <button className="accept" onClick={() => setShowModal(true)}><FontAwesomeIcon icon={faCheck} color="white" size="2xl" /></button>
                 </div>
             </div>
-
  */
 export default function Timeline(){
     const dummy = useRef();

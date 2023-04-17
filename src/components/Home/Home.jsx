@@ -3,9 +3,9 @@ import './Home.css';
 
 export default function Home() {
     return (
-
-        <body className="home">
-            <Header num={1} />
+        <>
+        
+        <Header num={1} />
             <section id="section0" className="container-fluid">
                 <div className="container">
                     <div className="row">
@@ -16,6 +16,6 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-        </body>
+        </>
     )
 }

@@ -17,7 +17,7 @@ const ShelterOption = props => {
     console.log(`name: ${name}, ref: ${ref}`);
 
     return(
-        <option value={ref}>{`${name}, ${address}, ${ref}`}</option>
+        <option value={ref}>{`${name}, ${address}`}</option>
     )
 }
 
@@ -102,8 +102,4 @@ export default ShelterSelect
 
 
 /*
-
-
-
-
  */
