@@ -104,7 +104,7 @@ export default function Sign_In() {
                 </div>
                 <div className="container">
 
-                    <span className="psw">FORGOT <a className="forgotpass" href="#">PASSWORD?</a></span>
+                    
                     <span className="signup">NOT A <Link to='/onboarding'>MEMBER?</Link> </span>
                 </div>
             </section>

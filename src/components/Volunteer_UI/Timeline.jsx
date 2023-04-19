@@ -27,6 +27,12 @@ function Tasks(props){
         else return Math.floor(diff) + " minutes ago";
     }
 
+    let addressSetter = 'https://www.google.com/maps/dir/?api=1&destination=';
+    let travelMode = '&travelmode=driving/';
+    let destination = encodeURIComponent(d_address);
+    let firstHalf = addressSetter.concat(destination);
+    let mapLink = firstHalf.concat(travelMode);
+
 
 
     return (
@@ -34,15 +40,13 @@ function Tasks(props){
 
             <div className="row py-3 border-bottom">
                 <div className="col">
-                    <div className="card-title my-0 mb-2 h6">{`Posted: ${minsAgo(createdAt)}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Available at: ${availability}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Title: ${title}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Quantity: ${quantity}`}</div>
-                    <div className="card-title my-0 mb-2 h6">{`Address: ${d_address}`}</div>
+                    <div className="card-title my-0 mb-2 h6">{`Donor Address: ${d_address}`}</div>
                 </div>
                 <div className="col buttons">
-                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="white" size="2xl" /></a></button>
-                    <button className="viewmap"><FontAwesomeIcon icon={faMapLocationDot} size="2xl" /></button>
+                    <button className="viewmap"> <a href= {mapLink} target={'_blank'}><FontAwesomeIcon icon={faMapLocationDot} size="2xl" /></a></button>
                     <button className="accept" onClick={() => setShowModal(true)}><FontAwesomeIcon icon={faCheck} color="white" size="2xl" /></button>
                 </div>
             </div>

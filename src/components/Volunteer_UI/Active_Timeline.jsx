@@ -12,10 +12,14 @@ import { faComment, faMapLocationDot, faCheck } from '@fortawesome/free-solid-sv
 
 function Tasks(props) {
     const { task } = props;
-    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
+    const { s_address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
 
+    let addressSetter = 'https://www.google.com/maps/dir/?api=1&destination=';
+    let travelMode = '&travelmode=driving/';
+    let destination = encodeURIComponent(s_address);
+    let firstHalf = addressSetter.concat(destination);
+    let mapLink = firstHalf.concat(travelMode);
 
-    
 
     const minsAgo = (oldDate) => {
         const currentDate = new Date();
@@ -33,14 +37,13 @@ function Tasks(props) {
 
             <div className="row py-3 border-bottom">
                 <div className="col">
-                    <div className="card-title my-0 mb-2 h6">{`Posted: ${minsAgo(createdAt)}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Available at: ${availability}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Title: ${title}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Quantity: ${quantity}`}</div>
+                    <div className="card-title my-0 mb-2 h6">{`Deliver to: ${s_address}`}</div>
                 </div>
                 <div className="col buttons">
-                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="white" size="2xl" /></a></button>
-                    <button className="viewmap"><FontAwesomeIcon icon={faMapLocationDot} size="2xl" /></button>
+                    <button className="viewmap"> <a href={mapLink} target={'_blank'}><FontAwesomeIcon icon={faMapLocationDot} size="2xl" /></a></button>
                 </div>
             </div>
         </>
@@ -48,7 +51,7 @@ function Tasks(props) {
 }
 
 export default function Active_Timeline() {
-    const[curr_uid, setCurr_UID] = useState('')
+    const [curr_uid, setCurr_UID] = useState('')
 
     useEffect(() => {
         const unsub = auth.onAuthStateChanged((authObj) => {

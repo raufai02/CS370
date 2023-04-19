@@ -3,7 +3,9 @@ import { db, auth } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { useCol } from "react-bootstrap/Col";
 import { useEffect, useRef, useState } from "react";
-import { collection, query, where, orderBy, limit, getDocs, updateDoc, doc } from "firebase/firestore";
+import { collection, query, where, orderBy, limit, getDoc, updateDoc, doc } from "firebase/firestore";
+
+import TaskConfirm from "./Task_Confirm.jsx";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,14 +14,37 @@ import { faComment, faMapLocationDot, faCheck } from '@fortawesome/free-solid-sv
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function Tasks(props) {
-    const { task } = props;
-    const { address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
 
+
+function Tasks(props) {
+        
     
+    const { task } = props;
+    const { v_uid, address, createdAt, description, status, uid, photoURL, quantity, title, availability, ref } = task;
+
 
     const [showModal, setShowModal] = useState(false);
+    const [showConfirm, setShowConfirm] = useState(false);
 
+    const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const userDoc = await getDoc(doc(db, "users", v_uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          setUserName(userData.name);
+        }
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+
+    fetchUserName();
+  }, [v_uid]);
+
+    
 
 
     const handleRejectClick = () => {
@@ -56,15 +81,20 @@ function Tasks(props) {
                     <div className="card-title my-0 mb-2 h6">{`Title: ${title}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Time: ${availability}`}</div>
                     <div className="card-title my-0 mb-2 h6">{`Quantity: ${quantity}`}</div>
+                    <div className="card-title my-0 mb-2 h6">{`Delivered by: ${userName}`}</div>
+                </div>
+                <div className="col">
+                    <button>{`Status: ${status}`}</button>
                 </div>
 
                 <div className="col">
                     <button onClick={() => setShowModal(true)}>Details:</button>
                 </div>
-                <div className="col">
-                    <button className='chatbubbles'><a href="chat.html"><FontAwesomeIcon icon={faComment} color="black" size="2xl" /></a></button>
+                <div className="col buttons">
+                    <button className="accept" onClick={() => setShowConfirm(true)}><FontAwesomeIcon icon={faCheck} color="white" size="2xl" /></button>
                 </div>
             </div>
+            <TaskConfirm show={showConfirm} onClose={()=>setShowConfirm(false)} taskRef = {ref}></TaskConfirm>
             <Modal
                 show={showModal}
                 onHide={handleRejectClick}
