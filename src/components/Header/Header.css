@@ -1,11 +1,10 @@
+
 .navbar{
-    border-top: 2px solid black;
-    border-bottom: 2px solid ;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
     
     justify-content: center;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
   }
   
@@ -46,4 +45,3 @@
   }
 
 
-  
