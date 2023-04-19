@@ -73,7 +73,8 @@ export default function Donor_UI() {
       d_uid: auth.currentUser.uid,
       status: 'available',
       ref: newTaskRef.id,
-      d_address: d_address
+      d_address: d_address,
+      s_address: ''
     });
    
     setFormValue({ title: '', quantity: '', description: '', availability: '12:00 PM' });

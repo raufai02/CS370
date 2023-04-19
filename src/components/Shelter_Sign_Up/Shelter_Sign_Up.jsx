@@ -33,7 +33,8 @@ export default function Volunteer_Sign_Up(){
                     address: address,
                     license: license,
                     ref: userCredential.user.uid,
-                    status: "closed"
+                    status: "closed",
+                    completedTasks: 0
                 });
             }).then((userCredential) => {
         })
