@@ -59,11 +59,15 @@ export default function Shelter_UI() {
       <div className="row">
         <div className="col">
           <div className="d-flex justify-content-center my-3">
+          <h6 className="toggle-text">{status === 'open' ? 'Accepting Tasks' : 'Closed'}</h6>
+          </div>
+          <div className="d-flex justify-content-center my-3">
+            
             <label className="switch">
               <input type="checkbox" checked={status === 'open'} onChange={handleToggle} />
-              <span className="slider round"></span>
+              <div className="slider round"></div>
             </label>
-            <span className="toggle-text">{status === 'open' ? 'Accepting Tasks' : 'Closed'}</span>
+            
             
           </div>
         </div>
