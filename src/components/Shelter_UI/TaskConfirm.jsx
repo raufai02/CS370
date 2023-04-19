@@ -1,8 +1,9 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import {doc, updateDoc} from "firebase/firestore";
+import {doc, getDoc, updateDoc} from "firebase/firestore";
 import {db} from "../../firebase";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import firebase from "firebase/compat/app";
 
 
 const TaskConfirm = props => {
@@ -23,9 +24,22 @@ const TaskConfirm = props => {
 
     async function handleAccept () {
         const newTaskRef = doc(db, "tasks", props.taskRef);
+        const docSnap = await getDoc(newTaskRef);
+
+        const vUID = docSnap.data().v_uid;
+        const sUID = docSnap.data().s_uid;
+        const dUID = docSnap.data().d_uid;
+
+        const vRef = doc(db, "users", vUID);
+        const sRef = doc(db, "users", sUID);
+        const dRef = doc(db, "users", dUID);
+
+        console.log(vUID);
+
         const data = {
             status: "completed"
         }
+
 
         props.onClose();
 
@@ -36,6 +50,10 @@ const TaskConfirm = props => {
             .catch(error => {
                 console.log(error);
             })
+
+        await updateDoc(vRef, { tasksCompleted: firebase.firestore.FieldValue.increment(1)});
+        await updateDoc(sRef, { tasksCompleted: firebase.firestore.FieldValue.increment(1)});
+        await updateDoc(dRef, { tasksCompleted: firebase.firestore.FieldValue.increment(1)});
     }
 
     return(

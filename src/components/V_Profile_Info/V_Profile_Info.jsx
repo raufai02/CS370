@@ -5,6 +5,7 @@ import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import ChangePassword from "./ChangePassword";
 
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
@@ -13,6 +14,7 @@ import { auth } from '../../firebase';
 export default function V_Profile_Info() {
     const[curr_uid, setCurr_UID] = useState('')
     const[curr_email, setCurr_Email] = useState('')
+    const[showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const unsub = auth.onAuthStateChanged((authObj) => {
@@ -48,7 +50,8 @@ useEffect(() => {
 }, [user]);
 
     return (
-        <body>
+        <>
+            <body>
             <VHeader num={5} />
             <section className="push"></section>
             <section className="vh-100 profile-info">
@@ -62,7 +65,7 @@ useEffect(() => {
                                         <img src="../MS_images/contact_image.png" className="img-fluid my-5" />
                                         <p>{name}</p>
                                         <p>{role}</p>
-                                        <button type="button" className="btn btn-outline-dark">Edit Profile</button>
+                                        <button type="button" className="btn btn-outline-dark" onClick={() => setShowModal(true)}>Change Password</button>
                                     </div>
                                     <div className="col-md-8">
                                         <div className="card-body p-4">
@@ -99,5 +102,7 @@ useEffect(() => {
                 </div>
             </section>
         </body>
+            <ChangePassword show={showModal} onClose={()=>setShowModal(false)}></ChangePassword>
+        </>
     )
 }
