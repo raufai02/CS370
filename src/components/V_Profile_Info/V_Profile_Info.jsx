@@ -34,6 +34,7 @@ export default function V_Profile_Info() {
     const [role, setRole] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [name, setName] = useState('');
+    const [tasksCompleted, setTasksCompleted] = useState('');
 
     async function userInfo(user) {
     const docRef = doc(db, "users", user);
@@ -41,6 +42,7 @@ export default function V_Profile_Info() {
     setRole(String(docSnap.data().role));
     setPhoneNum(String(docSnap.data().phoneNum));
     setName(String(docSnap.data().name));
+    setTasksCompleted(String(docSnap.data().tasksCompleted));
 }
 
 useEffect(() => {
@@ -86,11 +88,7 @@ useEffect(() => {
                                             <div className="row pt-1">
                                                 <div className="col-6 mb-3">
                                                     <h6>Meals Delivered</h6>
-                                                    <p className="text-muted">34</p>
-                                                </div>
-                                                <div className="col-6 mb-3">
-                                                    <h6>Miles traveled</h6>
-                                                    <p className="text-muted">150</p>
+                                                    <p className="text-muted">{tasksCompleted}</p>
                                                 </div>
                                             </div>
                                         </div>
