@@ -5,6 +5,7 @@ import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
+import ChangePassword from "./ChangePassword.jsx";
 
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
@@ -13,6 +14,7 @@ import { auth } from '../../firebase';
 export default function V_Profile_Info() {
     const[curr_uid, setCurr_UID] = useState('')
     const[curr_email, setCurr_Email] = useState('')
+    const[showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const unsub = auth.onAuthStateChanged((authObj) => {
@@ -32,7 +34,6 @@ export default function V_Profile_Info() {
     const [role, setRole] = useState('');
     const [phoneNum, setPhoneNum] = useState('');
     const [name, setName] = useState('');
-    const [tasksCompleted, setTasksCompleted] = useState('');
 
     async function userInfo(user) {
     const docRef = doc(db, "users", user);
@@ -40,7 +41,6 @@ export default function V_Profile_Info() {
     setRole(String(docSnap.data().role));
     setPhoneNum(String(docSnap.data().phoneNum));
     setName(String(docSnap.data().name));
-    setTasksCompleted(docSnap.data().tasksCompleted);
 }
 
 useEffect(() => {
@@ -50,7 +50,8 @@ useEffect(() => {
 }, [user]);
 
     return (
-        <body>
+        <>
+            <body>
             <VHeader num={5} />
             <section className="push"></section>
             <section className="vh-100 profile-info">
@@ -64,7 +65,7 @@ useEffect(() => {
                                         <img src="../MS_images/contact_image.png" className="img-fluid my-5" />
                                         <p>{name}</p>
                                         <p>{role}</p>
-                                        <button type="button" className="btn btn-outline-dark">Edit Profile</button>
+                                        <button type="button" className="btn btn-outline-dark" onClick={() => setShowModal(true)}>Change Password</button>
                                     </div>
                                     <div className="col-md-8">
                                         <div className="card-body p-4">
@@ -85,7 +86,11 @@ useEffect(() => {
                                             <div className="row pt-1">
                                                 <div className="col-6 mb-3">
                                                     <h6>Meals Delivered</h6>
-                                                    <p>{tasksCompleted}</p>
+                                                    <p className="text-muted">34</p>
+                                                </div>
+                                                <div className="col-6 mb-3">
+                                                    <h6>Miles traveled</h6>
+                                                    <p className="text-muted">150</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -97,5 +102,7 @@ useEffect(() => {
                 </div>
             </section>
         </body>
+            <ChangePassword show={showModal} onClose={()=>setShowModal(false)}></ChangePassword>
+        </>
     )
 }

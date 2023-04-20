@@ -3,7 +3,8 @@ import './Shelter_Info.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
-
+import c_img from './contact_image.png';
+import ChangePassword from '../V_Profile_Info/ChangePassword.jsx';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -12,9 +13,11 @@ import { auth } from '../../firebase';
 //<FilePerson className="centerFile"/>
 
 
+
 export default function Shelter_Info() {
     const[curr_uid, setCurr_UID] = useState('')
     const[curr_email, setCurr_Email] = useState('')
+    const[showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const unsub = auth.onAuthStateChanged((authObj) => {
@@ -62,10 +65,10 @@ useEffect(() => {
                             <div className="card mb-3 profile-card">
                                 <div className="row g-0">
                                     <div className="col-md-4 gradient-custom text-center text-white profile-pic">
-                                        <img src="../MS_images/contact_image.png" className="img-fluid my-5" />
-                                        <p>{name}</p>
-                                        <p>{role}</p>
-                                        <button type="button" className="btn btn-outline-dark">Edit Profile</button>
+                                        <img src={c_img} className="img-fluid my-5" />
+                                        <p>Name: {name}</p>
+                                        <p>Role: {role}</p>
+                                        <button type="button" className="btn btn-outline-dark" onClick={() => setShowModal(true)}>Change Password</button>
                                     </div>
                                     <div className="col-md-8">
                                         <div className="card-body p-4">
@@ -97,6 +100,7 @@ useEffect(() => {
                     </div>
                 </div>
             </section>
+            <ChangePassword show={showModal} onClose={()=>setShowModal(false)}></ChangePassword>
 
         </body>
     )
