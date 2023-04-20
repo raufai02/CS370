@@ -34,7 +34,7 @@ export default function Volunteer_Sign_Up(){
                     license: license,
                     ref: userCredential.user.uid,
                     status: "closed",
-                    completedTasks: 0
+                    tasksCompleted: 0
                 });
             }).then((userCredential) => {
         })

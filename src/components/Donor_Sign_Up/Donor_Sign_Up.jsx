@@ -33,7 +33,7 @@ export default function Volunteer_Sign_Up(){
                     address: address,
                     license: license,
                     ref: userCredential.user.uid,
-                    completedTasks: 0
+                    tasksCompleted: 0
                 });
             }).then((userCredential) => {
         })
